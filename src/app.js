@@ -1,51 +1,67 @@
 import getData from "./getData";
 
-const g = async() => {
-    let x = await getData();
-    console.log(x);
-    return x;
-}
-
 const getInputValue = () => {
     const form = document.querySelector('#form');
     const input = document.querySelector('#city-input');
-    const submitBtn = document.querySelector('#submit-btn');
-    const city = document.querySelector('#city');
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         let v = input.value;
-        let c = await getData(v);
-        city.textContent = c.name;
+        Data(v);
+        
     })
 }
 
-// const getCity = async (v) => {
-//     const city = document.querySelector('#city');
-//     let x = await g();
-//     console.log(x.name);
-//     city.textContent = x.name;
-// }
+const displayLoading = () => {
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+        loader.classList.remove('display');
+    }, 3000);
+}
 
-// getCity();
+const hideLoading = () => {
+    const loader = document.getElementById('loader');
+    const mainBody = document.querySelector('#main');
+    loader.classList.add('display');
+    mainBody.classList.remove('display');
+}
 
-// const getCity = async () => {
-//     let x =  await getData();
-//     console.log(x);
-//     // x.then(r => {
-//     //     console.log(r);
+const Data = async (v) => {
+    let c = getData(v).then(data => {
+        hideLoading();
+        console.log(data); 
+        const {main, weather, name, wind} = data;
+        console.log(main, weather);
+            getName(name);
+            getTemp(main.temp);
+            getWind(wind.speed);
+    })   
+    .catch(c => {
+        console.log(c);
+    });
+    
+}
 
-//     //     console.log(r.weather);
-//     //     console.log(r.main);
-//     //     console.log(r.name);
-//     // })
-//     // .catch(rej => {
-//     //     console.log('error', rej);
-//     // })
-// }
+const getName = (name) => {
+    const city = document.querySelector('#city');
+    city.textContent = name;
+    return name;
+}
 
-// getCity();
+const getTemp = (t) => {
+    const temp = document.getElementById('temp');
+    temp.textContent = t;
+    return t;
+}
+
+const getWind = (windSpeed) => {
+    const wind = document.getElementById('wind');
+    wind.textContent = windSpeed;
+    return windSpeed;
+}
 
 export {
     getInputValue,
+    displayLoading,
+    hideLoading
 }
