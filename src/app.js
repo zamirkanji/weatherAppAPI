@@ -1,5 +1,7 @@
 import getData from "./getData";
 
+let d = getData();
+
 const getInputValue = () => {
     const form = document.querySelector('#form');
     const input = document.querySelector('#city-input');
@@ -12,6 +14,24 @@ const getInputValue = () => {
     })
 }
 
+const getCity = async () => {
+    let x =  await getData();
+    console.log(x);
+    // x.then(r => {
+    //     console.log(r);
 
+    //     console.log(r.weather);
+    //     console.log(r.main);
+    //     console.log(r.name);
+    // })
+    // .catch(rej => {
+    //     console.log('error', rej);
+    // })
+}
 
-export default getInputValue
+getCity();
+
+export {
+    getInputValue,
+    getCity
+}
