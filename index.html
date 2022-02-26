@@ -17,13 +17,17 @@
             <button type="submit" id="submit-btn">Search</button>
         </form>
     </div>
-    <div class="container main">
+    <div id="loader" class="display ripple">
+        <div></div>
+        <div></div>
+    </div>
+    <div id="main" class="container main display">
         <h5 id="city">Random City</h5>
-        <p>76</p>
-        <p>Humidity</p>
-        <p>Wind</p>
-        <p>Visibility</p>
-        <p>Feels Like</p>
+        <p id="temp">76</p>
+        <p id="humidity">Humidity</p>
+        <p id="wind">Wind</p>
+        <p id="visibility">Visibility</p>
+        <p id="feels-like">Feels Like</p>
     </div>
     <div class="container info"></div>
     <script src="main.js"></script>
