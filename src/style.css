@@ -1,5 +1,21 @@
 
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 15px;
+}
+
 .display {
     display: none;
 }
@@ -38,12 +54,27 @@
   }
   
 
+input {
+    border: none;
+    border-radius: 5px;
+    /* border: 1px solid white; */
+    padding: 5px;
+}
 
+button {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
 
-input:invalid {
+/* input:invalid {
     border: 2px dashed red;
   }
   
   input:valid {
     border: 2px solid black;
+  } */
+
+  .text {
+      color: white;
   }
