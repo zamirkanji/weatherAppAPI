@@ -71,9 +71,9 @@ const dataAsync = async (v) => {
         }).then(c => {
             const t = timeOut(displayLoading());
             getName(c.name);
-            getTemp(Math.round(c.main.temp));
-            getWind(Math.round(c.wind.speed));
-            getHumidity(c.main.humidity);
+            getTemp(Math.round(c.main.temp) + '°');
+            getWind(Math.round(c.wind.speed) +'mph');
+            getHumidity(c.main.humidity + '%');
             clear(t);
             return c;
         })
@@ -119,18 +119,18 @@ const getName = (name) => {
 }
 
 const getTemp = (t) => {
-    const temp = document.getElementById('temp');
+    const temp = document.getElementById('temp-span');
     temp.textContent = t;
     return t;
 }
 
 const getWind = (windSpeed) => {
-    const wind = document.getElementById('wind');
+    const wind = document.getElementById('wind-span');
     wind.textContent = windSpeed;
     return windSpeed;
 }
 const getHumidity = (h) => {
-    const humidity = document.getElementById('humidity');
+    const humidity = document.getElementById('humidity-span');
     humidity.textContent = h;
     return h;
 }

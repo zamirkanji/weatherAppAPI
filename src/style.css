@@ -96,3 +96,9 @@ button {
   .display {
     display: none;
 }
+
+#city {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: .8px;
+}
