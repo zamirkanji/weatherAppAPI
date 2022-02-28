@@ -1,4 +1,5 @@
 const path = require('path');
+// require("svg-url-loader!./file.svg");
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -28,6 +29,36 @@ module.exports = {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
             },
+            // {
+            //     test: /\.svg/,
+            //     use: {
+            //       loader: "svg-url-loader",
+            //       options: {
+            //         // make loader to behave like url-loader, for all svg files
+            //         encoding: "base64",
+            //       },
+            //     },
+            //   },
+            // {//use SVGR for imports in js/jsx files
+            //     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+            //     oneOf: [
+            //         {
+            //         use: [
+            //             'babel-loader',
+            //             {
+            //             loader: '@svgr/webpack',
+            //             options: {
+            //                 babel: false,
+            //                 icon: true,
+            //             },
+            //             }
+            //         ],
+            //         issuer: {
+            //             and: [/\.(js|jsx)$/],
+            //         },
+            //         },
+            //     ],
+            // }
         ],
     },
 };

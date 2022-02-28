@@ -1,7 +1,8 @@
 import {getData, getGeoLocation} from "./getData";
 import { displayLoading, hideLoading } from "./DOM";
+// import {displaySVG} from './img.js';
 
-const getInputValue = () => {
+const getInputValue = async () => {
     const form = document.querySelector('#form');
     const input = document.querySelector('#city-input');
     const mainBody = document.querySelector('#main');
@@ -14,7 +15,6 @@ const getInputValue = () => {
         e.preventDefault();
         let v = input.value;
         dataAsync(v);
-        
     })
 }
 
@@ -75,6 +75,7 @@ const dataAsync = async (v) => {
             getWind(Math.round(c.wind.speed) +'mph');
             getHumidity(c.main.humidity + '%');
             clear(t);
+            // displaySVG(c);
             return c;
         })
     }catch (err) {

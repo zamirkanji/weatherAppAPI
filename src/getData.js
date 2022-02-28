@@ -34,7 +34,6 @@ const getGeoLocation = async (city) => {
         console.log(GEO);
         const lat = GEO[0].lat;
         const lon = GEO[0].lon;
-        console.log(lat, lon);
         return {lat, lon};
         // const data = await (getData(lat, lon));
         // console.log(data);
