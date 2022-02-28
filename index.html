@@ -6,34 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body class="container body">
-    <header class="container header">
-        <h3>Weather</h3>
-    </header>
-    <div class="container search-bar">
-        <form action="" id="form">
-            <label for="city-input"></label>
-            <input type="search" value="" id="city-input" autocomplete="home city" inputmode="" placeholder="Search for City..." required>
-            <button type="submit" id="submit-btn">Search</button>
-        </form>
-        <!-- <input list="cities" id="city-list" name="city-list">
-        <datalist id="cities">
-            <option value="test"></option>
-        </datalist> -->
+<body>
+    <div class="main-container">
+        <header class="container header">
+            <h3 class="text">Weather</h3>
+        </header>
+        <div class="container search-bar">
+            <form action="" id="form">
+                <label for="city-input"></label>
+                <input type="search" value="" id="city-input" autocomplete="home city" inputmode="" placeholder="Search for City..." required>
+                <button type="submit" id="submit-btn">Search</button>
+            </form>
+            <!-- <input list="cities" id="city-list" name="city-list">
+            <datalist id="cities">
+                <option value="test"></option>
+            </datalist> -->
+        </div>
+        <div id="loader" class="display">
+            <div></div>
+            <div></div>
+        </div>
+        <div id="main" class="display">
+            <h5 id="city" class="text"></h5>
+            <p id="temp" class="text">Temperature: <span id="temp-span"></span></p>
+            <p id="humidity" class="text">Humidity: <span id="humidity-span"></span></p>
+            <p id="wind" class="text">Wind Speed: <span id="wind-span"></span></p>
+            <p id="visibility" class="text">Visibility</p>
+            <p id="feels-like" class="text">Feels Like</p>
+        </div>
+        <div class="container info"></div>
     </div>
-    <div id="loader" class="display">
-        <div></div>
-        <div></div>
-    </div>
-    <div id="main" class="display">
-        <h5 id="city" class="text"></h5>
-        <p id="temp" class="text">Temperature: <span id="temp-span"></span></p>
-        <p id="humidity" class="text">Humidity: <span id="humidity-span"></span></p>
-        <p id="wind" class="text">Wind Speed: <span id="wind-span"></span></p>
-        <p id="visibility" class="text">Visibility</p>
-        <p id="feels-like" class="text">Feels Like</p>
-    </div>
-    <div class="container info"></div>
+    
     <script src="main.js"></script>
 </body>
 </html>
