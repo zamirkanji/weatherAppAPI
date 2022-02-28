@@ -17,6 +17,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#form {
+    display: flex;
+    gap: 15px;
+}
+
 
 
 .ripple {
@@ -61,9 +66,11 @@ input {
 }
 
 button {
-    padding: 5px;
+    padding: 7px;
     border: none;
     border-radius: 5px;
+    background-color: cadetblue;
+    color: white;
 }
 
 /* input:invalid {

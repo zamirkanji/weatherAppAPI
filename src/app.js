@@ -1,4 +1,5 @@
-import getData from "./getData";
+import {getData, getGeoLocation} from "./getData";
+import { displayLoading, hideLoading } from "./DOM";
 
 const getInputValue = () => {
     const form = document.querySelector('#form');
@@ -12,25 +13,12 @@ const getInputValue = () => {
         }
         e.preventDefault();
         let v = input.value;
-        Data(v);
+        dataAsync(v);
         
     })
 }
 
-const displayLoading = () => {
-    const loader = document.querySelector('#loader');
-    loader.classList.remove('display');
-    loader.classList.add('ripple');
-}
 
-const hideLoading = () => {
-    const loader = document.querySelector('#loader');
-    const mainBody = document.querySelector('#main');
-    loader.classList.remove('ripple');
-    loader.classList.add('display');
-    mainBody.classList.remove('display');
-    mainBody.classList.add('main');
-}
 
 // const timeOut = (ms) => {
 //     return new Promise(resolve => setTimeout(resolve, ms));
@@ -70,20 +58,59 @@ const clear = () => clearTimeout(timeOut);
 // }
 
 
-const Data = async (v) => {
+const dataAsync = async (v) => {
     try {
-        let c = await getData(v);
-        const t = timeOut(displayLoading());
-        getName(c.name);
-        getTemp(c.main.temp);
-        getWind(c.wind.speed);
-        clear(t);
-        return c;
+        let c;
+        // let c = await getGeoLocation(v);
+        // console.log(c);
+        getGeoLocation(v).then(async geo => {
+            console.log(geo);
+            c = await getData(geo['lat'], geo['lon']);
+            console.log(c);
+            return c;
+        }).then(c => {
+            const t = timeOut(displayLoading());
+            getName(c.name);
+            getTemp(Math.round(c.main.temp));
+            getWind(Math.round(c.wind.speed));
+            getHumidity(c.main.humidity);
+            clear(t);
+            return c;
+        })
     }catch (err) {
         console.log(err);
     }
     
 }
+//async class that has getname, gettemp, etc as methods
+// class Data {
+    
+//     constructor() {
+
+//     }
+//     getName = (name) => {
+//         const city = document.querySelector('#city');
+//         city.textContent = name;
+//         return name;
+//     }
+    
+//     getTemp = (t) => {
+//         const temp = document.getElementById('temp');
+//         temp.textContent = t;
+//         return t;
+//     }
+    
+//     getWind = (windSpeed) => {
+//         const wind = document.getElementById('wind');
+//         wind.textContent = windSpeed;
+//         return windSpeed;
+//     }
+//     getHumidity = (humidity) => {
+//         const wind = document.getElementById('wind');
+//         wind.textContent = humidity;
+//         return humidity;
+//     }
+// }
 
 const getName = (name) => {
     const city = document.querySelector('#city');
@@ -101,6 +128,11 @@ const getWind = (windSpeed) => {
     const wind = document.getElementById('wind');
     wind.textContent = windSpeed;
     return windSpeed;
+}
+const getHumidity = (h) => {
+    const humidity = document.getElementById('humidity');
+    humidity.textContent = h;
+    return h;
 }
 
 export {
