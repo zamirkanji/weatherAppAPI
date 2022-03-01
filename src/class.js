@@ -1,9 +1,10 @@
 class Weather {
-    constructor({weather, name, wind, main}) {
+    constructor({weather, name, wind, main, visibility}) {
         this.weather = weather,
         this.name = name, 
         this.wind = wind, 
-        this.main = main
+        this.main = main,
+        this.visibility = visibility
     }
 
     log() {
@@ -41,4 +42,13 @@ class Weather {
         showImg(w);
         return w;
     }
+    getVisibility (v) {
+        const visibility = document.querySelector('#visibility');
+        const vMiles = v / 0.0006213712;
+        visibility.textContent = vMiles;
+        return vMiles;
+    }
 }
+
+
+export default Weather;

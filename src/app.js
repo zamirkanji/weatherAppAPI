@@ -1,6 +1,7 @@
 import {getData, getGeoLocation} from "./getData";
 import { displayLoading, hideLoading } from "./DOM";
 import {displaySVG, showImg} from './img';
+import Weather from "./class";
 
 const getInputValue = async () => {
     const form = document.querySelector('#form');
@@ -73,11 +74,12 @@ const dataAsync = async (v) => {
             getHumidity(c.main.humidity + '%');
             getFeelsLike(c.main.feels_like + '°');
             getWeatherType(c.weather[0].main);
+            getVisibility(c.visibility);
             clear(t);
             // displaySVG(c);
             return c;
         })
-    }catch (err) {
+    } catch (err) {
         console.log(err);
     }   
 }
@@ -134,6 +136,13 @@ const getWeatherType = (w) => {
     // displaySVG(w);
     showImg(w);
     return w;
+}
+
+const getVisibility = (v) => {
+    const visibility = document.querySelector('#visibility');
+    const vMiles = 0.00062 / v;
+    visibility.textContent = vMiles;
+    return vMiles;
 }
 
 export {

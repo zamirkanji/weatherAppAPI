@@ -18,8 +18,8 @@ const getData = async (lat, lon) => {
             // GEO = await geoLocation.json();
             // console.log(GEO);
             console.log(DATA);
-            const {weather, main, wind, name} = DATA;
-            let weatherData = {weather, main, wind, name};
+            const {weather, main, wind, name, visibility} = DATA;
+            let weatherData = {weather, main, wind, name, visibility};
             return weatherData;
         }
         
@@ -29,8 +29,13 @@ const getData = async (lat, lon) => {
 };
 
 const getGeoLocation = async (city) => {
+    
     try {
         let geoLocation = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=7706c3d5881905dc71d41abe6fc11974`, {mode: 'cors'});
+        console.log(geoLocation);
+        // if (!geoLocation.ok) {
+        //     throw new Error(geoLocation.status);
+        // }
         let GEO = await geoLocation.json();
         console.log(GEO);
         const lat = GEO[0].lat;
@@ -41,6 +46,10 @@ const getGeoLocation = async (city) => {
         // return data;
     } catch (e) {
         console.log(e, 'rejected');
+        const newEl = document.createElement('p');
+        const cityContainer = document.querySelector('.city-container');
+        newEl.textContent = 'Please enter a valid City';
+        cityContainer.appendChild(newEl);
     }
 }
 
