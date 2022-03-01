@@ -70,7 +70,8 @@ const dataAsync = async (v) => {
             const t = timeOut(displayLoading());
             getName(c.name);
             getTemp(Math.round(c.main.temp) + '°');
-            getWind(Math.round(c.wind.speed) +'mph');
+            // getWind(Math.round(c.wind.speed) +'mph');
+            getWind(Math.round(c.wind.speed, c.wind.deg));
             getHumidity(c.main.humidity + '%');
             getFeelsLike(c.main.feels_like + '°');
             getWeatherType(c.weather[0].main);
@@ -115,9 +116,18 @@ const getTemp = (t) => {
     return t;
 }
 
-const getWind = (windSpeed) => {
+const getWind = (windSpeed, dir) => {
+    console.log(dir);
     const wind = document.getElementById('wind-span');
-    wind.textContent = windSpeed;
+    let direction;
+    if (dir <= 11.25 && dir >= 348.75) {
+        direction === 'N';
+    } else if (dir <= 236.25 && dir >= 213.75) {
+        direction === 'SW';
+    } else {
+        console.log(Error);
+    }
+    wind.textContent = windSpeed + direction;
     return windSpeed;
 }
 const getHumidity = (h) => {
