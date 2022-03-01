@@ -79,38 +79,27 @@ const dataAsync = async (v) => {
         })
     }catch (err) {
         console.log(err);
-    }
-    
+    }   
 }
-//async class that has getname, gettemp, etc as methods
-// class Data {
-    
-//     constructor() {
 
-//     }
-//     getName = (name) => {
-//         const city = document.querySelector('#city');
-//         city.textContent = name;
-//         return name;
+// const dataAsync = async (v) => {
+//     try {
+//         let c;
+//         getGeoLocation(v).then(async geo => {
+//             c = await getData(geo['lat'], geo['lon']);
+//             console.log(c);
+//             return c;
+//         }).then(c => {
+//             const t = timeOut(displayLoading())
+//             const weather = new Weather(c)
+//             return c;
+//         })
+//     }catch (err) {
+//         console.log(err);
 //     }
     
-//     getTemp = (t) => {
-//         const temp = document.getElementById('temp');
-//         temp.textContent = t;
-//         return t;
-//     }
-    
-//     getWind = (windSpeed) => {
-//         const wind = document.getElementById('wind');
-//         wind.textContent = windSpeed;
-//         return windSpeed;
-//     }
-//     getHumidity = (humidity) => {
-//         const wind = document.getElementById('wind');
-//         wind.textContent = humidity;
-//         return humidity;
-//     }
 // }
+
 
 const getName = (name) => {
     const city = document.querySelector('#city');
