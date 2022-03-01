@@ -17,6 +17,7 @@ const getData = async (lat, lon) => {
             DATA = await response.json();
             // GEO = await geoLocation.json();
             // console.log(GEO);
+            console.log(DATA);
             const {weather, main, wind, name} = DATA;
             let weatherData = {weather, main, wind, name};
             return weatherData;

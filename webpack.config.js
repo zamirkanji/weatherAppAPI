@@ -30,6 +30,11 @@ module.exports = {
                 type: 'asset/resource',
             },
             // {
+            //     test: /\.svg$/,
+            //     type: 'asset',
+            //     use: 'svgo-loader'
+            // },
+            // {
             //     test: /\.svg/,
             //     use: {
             //       loader: "svg-url-loader",

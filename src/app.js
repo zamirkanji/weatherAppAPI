@@ -1,6 +1,6 @@
 import {getData, getGeoLocation} from "./getData";
 import { displayLoading, hideLoading } from "./DOM";
-// import {displaySVG} from './img.js';
+import {displaySVG, showImg} from './img';
 
 const getInputValue = async () => {
     const form = document.querySelector('#form');
@@ -61,10 +61,7 @@ const clear = () => clearTimeout(timeOut);
 const dataAsync = async (v) => {
     try {
         let c;
-        // let c = await getGeoLocation(v);
-        // console.log(c);
         getGeoLocation(v).then(async geo => {
-            console.log(geo);
             c = await getData(geo['lat'], geo['lon']);
             console.log(c);
             return c;
@@ -74,6 +71,8 @@ const dataAsync = async (v) => {
             getTemp(Math.round(c.main.temp) + '°');
             getWind(Math.round(c.wind.speed) +'mph');
             getHumidity(c.main.humidity + '%');
+            getFeelsLike(c.main.feels_like + '°');
+            getWeatherType(c.weather[0].main);
             clear(t);
             // displaySVG(c);
             return c;
@@ -134,6 +133,18 @@ const getHumidity = (h) => {
     const humidity = document.getElementById('humidity-span');
     humidity.textContent = h;
     return h;
+}
+const getFeelsLike =(f) => {
+    const feelsLike = document.getElementById('feels-like-span');
+    feelsLike.textContent = f;
+    return f;
+}
+const getWeatherType = (w) => {
+    const weather = document.querySelector('#weather');
+    weather.textContent = w;
+    // displaySVG(w);
+    showImg(w);
+    return w;
 }
 
 export {

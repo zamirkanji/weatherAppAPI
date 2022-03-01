@@ -9,36 +9,54 @@
 html, body {
     margin: 0;
     height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-body {
-    /* height: 100%;
-    background-color: black;
-    padding: 50px; */
+/* .body-default {
     background: url('./img/julien-flutto-ZEDjKAuS8u0-unsplash.jpg');
-    /* background-size: cover; */
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: 1;
+    background-color: black;
+    padding: 50px;
+    backdrop-filter: blur(5px);
+} */
+
+/* .background-rain {
+    background: url('./img/valentin-muller-bWtd1ZyEy6w-unsplash.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 25px;
     backdrop-filter: blur(5px);
-}
+} */
+
+
 .main-container {
-    /* min-height: 100%; */
     height: 100%;
-    background-color: rgb(63, 63, 63);
+    background-color: rgba(40, 50, 56, .8);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+}
+
+.header {
+    flex: .5;
+    display: flex;
+    width: 100%;
+    background-color: rgba(40, 50, 56, .8);
+    display: flex;
+    padding: 0 20px;
+    /* justify-content: space-evenly; */
+    /* align-items: center; */
+}
+
+main {
+    flex: 2.5;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
     align-items: center;
-    gap: 25px;
-    padding: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    /* height: 100%; */
-    opacity: .7;
-    border-radius: 15px;
-    
+    padding: 25px 0;
 }
 
 #form {
@@ -51,6 +69,7 @@ body {
 .ripple {
     display: inline-block;
     position: relative;
+    
     width: 80px;
     height: 80px;
   }
@@ -82,48 +101,189 @@ body {
   }
   
 
+
+
+/* input:invalid {
+    border: 2px dashed red;
+  }
+  
+input:valid {
+border: 2px solid black;
+} */
+
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.display {
+    display: none;
+}
+
+#city {
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: .7px;
+    color: white;
+}
+
+/* #iconSVG {
+    background: url(./amcharts_weather_icons_1.0.0/animated/rainy-3.svg);
+} */
+
+
+
+#switch {
+    width: 60px;
+}
+
+
+/* .loader {
+    flex: .25;
+} */
+
+
+.info {
+    flex: 2;
+}
+
+/*switch*/
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+.title-container{
+    flex: 1;
+    /* background-color: white; */
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.search-bar {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: black; */
+}
+
+.switch-container {
+    flex: 1;
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#weather-title {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: .7px;
+    color: white;
+}
+
+.data-color {
+    color: rgb(89, 189, 255)
+}
+
+.text {
+    color: black;
+    font-size: 18px;
+}
+
 input {
     border: none;
     border-radius: 5px;
-    /* border: 1px solid white; */
-    padding: 5px;
+    padding: 7px;
+    width: 100%;
 }
 
 button {
     padding: 7px;
     border: none;
     border-radius: 5px;
-    background-color: cadetblue;
+    background-color: rgb(63, 93, 94);
     color: white;
 }
 
-/* input:invalid {
-    border: 2px dashed red;
-  }
+.city-container {
+    flex: .25
+}
+
+.info-container {
+    flex: .75;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 12px;
+}
+
+#weather {
+    font-size: 22px;
+}
   
-  input:valid {
-    border: 2px solid black;
-  } */
-
-  .text {
-      color: white;
-      z-index: 100;
-  }
-
-  .main {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-  }
-
-  .display {
-    display: none;
-}
-
-#city {
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: .8px;
-}
