@@ -9,7 +9,7 @@ const getData = async (lat, lon) => {
     // console.log(GEO);
     try {
         // let geoLocation = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=7706c3d5881905dc71d41abe6fc11974`, {mode: 'cors'});
-        let response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7706c3d5881905dc71d41abe6fc11974&units=imperial`, {mode: 'cors'});
+        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7706c3d5881905dc71d41abe6fc11974&units=imperial`, {mode: 'cors'});
         if(!response.ok) {
             throw new Error(response.status);
         } else {
@@ -31,7 +31,7 @@ const getData = async (lat, lon) => {
 const getGeoLocation = async (city) => {
     
     try {
-        let geoLocation = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=7706c3d5881905dc71d41abe6fc11974`, {mode: 'cors'});
+        let geoLocation = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=7706c3d5881905dc71d41abe6fc11974`, {mode: 'cors'});
         console.log(geoLocation);
         // if (!geoLocation.ok) {
         //     throw new Error(geoLocation.status);
