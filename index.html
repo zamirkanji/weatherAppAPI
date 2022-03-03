@@ -12,17 +12,7 @@
             <div class="title-container">
                 <h3 class="text" id="weather-title">Weather</h3>
             </div>
-            <div class="container search-bar">
-                <form action="" id="form">
-                    <label for="city-input"></label>
-                    <input type="search" value="" id="city-input" autocomplete="home city" inputmode="" placeholder="Search for City..." required>
-                    <button type="submit" id="submit-btn">Search</button>
-                </form>
-                <!-- <input list="cities" id="city-list" name="city-list">
-                <datalist id="cities">
-                    <option value="test"></option>
-                </datalist> -->
-            </div>
+            
             <div class="switch-container">
                 <label class="switch" id="switch">
                     <input type="checkbox" placeholder="F" value="F">
@@ -30,6 +20,17 @@
                 </label>
             </div>
         </header>
+        <div class="container search-bar">
+            <form action="" id="form">
+                <label for="city-input"></label>
+                <input type="search" value="" id="city-input" autocomplete="home city" inputmode="" placeholder="Search for City..." required>
+                <button type="submit" id="submit-btn">Search</button>
+            </form>
+            <!-- <input list="cities" id="city-list" name="city-list">
+            <datalist id="cities">
+                <option value="test"></option>
+            </datalist> -->
+        </div>
         <main>
             <div id="loader" class="display loader">
                 <div></div>
@@ -44,7 +45,7 @@
                     <p id="temp" class="text">Temperature: <span id="temp-span" class="data-color"></span></p>
                     <p id="humidity" class="text">Humidity: <span id="humidity-span" class="data-color"></span></p>
                     <p id="wind" class="text">Wind Speed: <span id="wind-span" class="data-color"></span></p>
-                    <p id="visibility" class="text">Visibility</p>
+                    <p id="visibility" class="text">Visibility: <span id="visibility-span"></span></p>
                     <p id="feels-like" class="text">Feels Like: <span id="feels-like-span" class="data-color"></span></p>
                 </div>
             </div>
