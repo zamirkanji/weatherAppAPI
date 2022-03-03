@@ -14,8 +14,11 @@ const hideLoading = () => {
     const loader = document.querySelector('#loader');
     const mainBody = document.querySelector('#main');
     const cityContainer = document.querySelector('#city-container');
+    const titleContainer = document.querySelector('.title-container');
     loader.classList.remove('ripple');
     loader.classList.add('display');
+    titleContainer.classList.add('display');
+    titleContainer.classList.remove('title-container');
     cityContainer.classList.remove('display');
     cityContainer.classList.add('city-container');
     mainBody.classList.remove('display');
