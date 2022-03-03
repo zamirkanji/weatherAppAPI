@@ -43,7 +43,6 @@ const dataAsync = async (v) => {
             const t = timeOut(displayLoading());
             getName(c.name);
             getTemp(Math.round(c.main.temp) + '°');
-            // getWind(Math.round(c.wind.speed) +'mph');
             getWind(Math.round(c.wind.speed), Math.round(c.wind.deg));
             getHumidity(c.main.humidity + '%');
             getFeelsLike(c.main.feels_like + '°');

@@ -28,7 +28,6 @@ const getForecast = async (lat, lon) => {
             throw new Error(response.status);
         } else {
             FORECAST = await response.json();
-            console.log(FORECAST);
             // const {weather, main, wind, name, visibility} = DATA;
             // let weatherData = {weather, main, wind, name, visibility};
             // return weatherData;
