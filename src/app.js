@@ -1,4 +1,4 @@
-import {getData, getGeoLocation} from "./getData";
+import {getData, getGeoLocation, getForecast} from "./getData";
 import { displayLoading, hideLoading } from "./DOM";
 import {displaySVG, showImg} from './img';
 import Weather from "./class";
@@ -32,16 +32,19 @@ const clear = () => clearTimeout(timeOut);
 const dataAsync = async (v) => {
     try {
         let c;
+        let f;
         getGeoLocation(v).then(async geo => {
             c = await getData(geo['lat'], geo['lon']);
+            f = await getForecast(geo['lat'], geo['lon']);
             console.log(c);
+            console.log(f);
             return c;
         }).then(c => {
             const t = timeOut(displayLoading());
             getName(c.name);
             getTemp(Math.round(c.main.temp) + '°');
             // getWind(Math.round(c.wind.speed) +'mph');
-            getWind(Math.round(c.wind.speed, c.wind.deg));
+            getWind(Math.round(c.wind.speed), Math.round(c.wind.deg));
             getHumidity(c.main.humidity + '%');
             getFeelsLike(c.main.feels_like + '°');
             getWeatherType(c.weather[0].main);
@@ -96,10 +99,12 @@ const getWind = (windSpeed, dir) => {
         direction === 'N';
     } else if (dir <= 236.25 && dir >= 213.75) {
         direction === 'SW';
+    } else if (dir <= 213.75 && dir >= 191.25) {
+        direction === 'SSW';
     } else {
         console.log(Error);
     }
-    wind.textContent = windSpeed + direction;
+    wind.textContent = `${windSpeed}mph ${direction}`;
     return windSpeed;
 }
 const getHumidity = (h) => {
@@ -121,7 +126,7 @@ const getWeatherType = (w) => {
 }
 
 const getVisibility = (v) => {
-    const visibility = document.querySelector('#visibility');
+    const visibility = document.querySelector('#visibility-span');
     const vMiles = 0.00062 / v;
     visibility.textContent = vMiles;
     return vMiles;

@@ -48,6 +48,11 @@ class Weather {
         visibility.textContent = vMiles;
         return vMiles;
     }
+
+    getItem (data, el) {
+        const element = document.querySelector(`${el}`);
+        element.textContent = data;
+    }
 }
 
 

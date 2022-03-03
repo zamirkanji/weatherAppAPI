@@ -9,6 +9,7 @@ const getData = async (lat, lon) => {
             throw new Error(response.status);
         } else {
             DATA = await response.json();
+            console.log(DATA);
             const {weather, main, wind, name, visibility} = DATA;
             let weatherData = {weather, main, wind, name, visibility};
             return weatherData;
@@ -17,6 +18,27 @@ const getData = async (lat, lon) => {
         console.log('rejected: ', err);
     }
 };
+
+
+const getForecast = async (lat, lon) => {
+    let FORECAST;
+    try {
+        let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=7706c3d5881905dc71d41abe6fc11974&units=imperial`, {mode: 'cors'});
+        if(!response.ok) {
+            throw new Error(response.status);
+        } else {
+            FORECAST = await response.json();
+            console.log(FORECAST);
+            // const {weather, main, wind, name, visibility} = DATA;
+            // let weatherData = {weather, main, wind, name, visibility};
+            // return weatherData;
+            return FORECAST;
+        }
+    } catch (err) {
+        console.log('rejected: ', err);
+    }
+};
+
 
 const getGeoLocation = async (city) => {
     
@@ -37,6 +59,7 @@ const getGeoLocation = async (city) => {
 
 export {
     getGeoLocation,
-    getData
+    getData,
+    getForecast
 }
 
