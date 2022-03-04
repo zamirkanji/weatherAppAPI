@@ -1,6 +1,6 @@
 import {getData, getGeoLocation, getForecast} from "./getData";
 import { displayLoading, hideLoading } from "./DOM";
-import {displaySVG, showImg} from './img';
+import {displaySVG, showImg, checkWeather} from './img';
 import Weather from "./class";
 
 const getInputValue = async () => {
@@ -49,6 +49,7 @@ const dataAsync = async (v) => {
             getWeatherType(c.weather[0].main);
             getVisibility(c.visibility);
             clear(t);
+            checkWeather(c.main.temp, c.weather[0].main);
             // displaySVG(c);
             return c;
         })

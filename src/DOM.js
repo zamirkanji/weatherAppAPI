@@ -4,6 +4,13 @@ class Element {
     }
 }
 
+const selectElement = (selector, removeOrAdd, specificClass) => {
+    const item = document.querySelector(`${selector}`);
+    item.classList.removeOrAdd(`${specificClass}`);
+    return item;
+} 
+
+
 const displayLoading = () => {
     const loader = document.querySelector('#loader');
     loader.classList.remove('display');
@@ -17,8 +24,8 @@ const hideLoading = () => {
     const titleContainer = document.querySelector('.title-container');
     loader.classList.remove('ripple');
     loader.classList.add('display');
-    titleContainer.classList.add('display');
-    titleContainer.classList.remove('title-container');
+    // titleContainer.classList.add('display');
+    // titleContainer.classList.remove('title-container');
     cityContainer.classList.remove('display');
     cityContainer.classList.add('city-container');
     mainBody.classList.remove('display');
@@ -27,5 +34,6 @@ const hideLoading = () => {
 
 export {
     displayLoading,
-    hideLoading
+    hideLoading,
+    selectElement
 }
