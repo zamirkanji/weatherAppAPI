@@ -12,30 +12,11 @@ html, body {
     /* font-family: Arial, Helvetica, sans-serif;
     font-family: Georgia, 'Times New Roman', Times, serif; */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    /* background-color: rgba(40, 50, 56, .9); */
     background: rgb(186,137,159);
     background: radial-gradient(circle, rgba(186,137,159,1) 0%, rgba(57,71,87,1) 100%); 
+    background: -webkit-radial-gradient(circle, rgba(186,137,159,1) 0%, rgba(57,71,87,1) 100%);
+    background-color: rgba(57,71,87,.9);
 }
-
-/* .body-default {
-    background: url('./img/julien-flutto-ZEDjKAuS8u0-unsplash.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: black;
-    padding: 50px;
-    backdrop-filter: blur(5px);
-} */
-
-/* .background-rain {
-    background: url('./img/valentin-muller-bWtd1ZyEy6w-unsplash.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 25px;
-    backdrop-filter: blur(5px);
-} */
-
 
 .main-container {
     height: 100%;
@@ -49,23 +30,15 @@ html, body {
     flex: .25;
     display: flex;
     width: 100%;
-    /* background-color: rgba(40, 50, 56, .8); */
-    /* background-color: rgb(112, 123, 126); */
-    /* box-shadow: 0 5px 10px rgb(0 0 0 / 0.6); */
     padding: 25px;
-    /* justify-content: space-evenly; */
-    /* align-items: center; */
 }
 
 main {
     flex: 2.75;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
     padding: 25px;
     gap: 10px;
-    /* background-color: rgb(76, 85, 94); */
 }
 
 
@@ -121,10 +94,6 @@ input {
   border: none;
   border-radius: 7px;
   padding: 8px;
-  /* width: 35vw;
-  height: 35px; */
-  /* width: 50%;
-  height: 25%; */
   width: 75%;
   height: 34px;
   margin-right: 15px;
@@ -142,6 +111,10 @@ input::placeholder {
   /* font-size: 1rem; */
   /* font-size: 12px; */
 }
+
+/* input:focus {
+  border: 1px solid rgba(57,71,87,.9);;
+} */
 
 button {
   padding: 7px;
@@ -289,6 +262,7 @@ button {
 #switch-temp-type {
     background-color: rgba(57,71,87,.4);
     transition: all .4s ease-in; 
+    width: 50%;
 }
 
 #switch-temp-type:hover {
@@ -345,7 +319,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 25px;
+    /* padding: 0 25px; */
     /* color: white; */
 }
 

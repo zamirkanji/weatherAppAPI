@@ -4,6 +4,8 @@ import rain from './amcharts_weather_icons_1.0.0/animated/rainy-3.svg';
 import snow from './amcharts_weather_icons_1.0.0/animated/snowy-3.svg';
 import heavySnow from './amcharts_weather_icons_1.0.0/animated/snowy-6.svg';
 import cloudy from './amcharts_weather_icons_1.0.0/animated/cloudy.svg';
+import clear from './amcharts_weather_icons_1.0.0/animated/day.svg';
+import clearNight from './amcharts_weather_icons_1.0.0/animated/night.svg';
 
 import sunny from './img/julien-flutto-ZEDjKAuS8u0-unsplash.jpg';
 import rainy from './img/valentin-muller-bWtd1ZyEy6w-unsplash.jpg'
@@ -23,12 +25,14 @@ import rainy from './img/valentin-muller-bWtd1ZyEy6w-unsplash.jpg'
 
 // export {displaySVG}
 
-const checkWeather = (temp, weather) => {
+const checkWeather = (temp, weather, time) => {
     const imgIcon = document.querySelector('#imgIcon');
     if (weather === 'Snow') {
         imgIcon.src = snow;
     } else if (weather === 'Clouds') {
         imgIcon.src = cloudy;
+    } else if (weather === 'Clear') {
+        imgIcon.src = clearNight;
     } else {
         return;
     }
