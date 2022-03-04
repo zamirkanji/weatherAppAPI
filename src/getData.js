@@ -1,17 +1,18 @@
 import { displayLoading, hideLoading } from "./app";
 
 
-const getData = async (lat, lon) => {
+const getData = async (lat, lon, state, unitType = 'imperial') => {
     let DATA;
     try {
-        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7706c3d5881905dc71d41abe6fc11974&units=imperial`, {mode: 'cors'});
+        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7706c3d5881905dc71d41abe6fc11974&units=${unitType}`, {mode: 'cors'});
+        // console.log(response);
         if(!response.ok) {
             throw new Error(response.status);
         } else {
             DATA = await response.json();
             console.log(DATA);
-            const {weather, main, wind, name, visibility} = DATA;
-            let weatherData = {weather, main, wind, name, visibility};
+            const {weather, main, wind, name, visibility, sys} = DATA;
+            let weatherData = {weather, main, wind, name, visibility, sys, state};
             return weatherData;
         }
     } catch (err) {
@@ -39,21 +40,42 @@ const getForecast = async (lat, lon) => {
 };
 
 
-const getGeoLocation = async (city) => {
+const getGeoLocation = async (city, unitType = null) => {
     
     try {
         let geoLocation = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=7706c3d5881905dc71d41abe6fc11974`, {mode: 'cors'});
         let GEO = await geoLocation.json();
-        const lat = GEO[0].lat;
-        const lon = GEO[0].lon;
-        return {lat, lon};
+        console.log(GEO);
+        // const lat = GEO[0].lat;
+        // const lon = GEO[0].lon;
+        const {lat, lon, state} = GEO[0];
+        console.log(state);
+        if (!unitType === null) {
+            return {lat, lon, state, unitType};
+        } else {
+            return {lat, lon, state};
+        }
     } catch (e) {
         console.log(e, 'rejected');
         const newEl = document.createElement('p');
-        const cityContainer = document.querySelector('.city-container');
+        const main = document.querySelector('main');
         newEl.textContent = 'Please enter a valid City';
-        cityContainer.appendChild(newEl);
+        newEl.classList.add('city-valid');
+        main.appendChild(newEl);
     }
+}
+
+const getAllData = async (city, unitType = null) => {
+    let geoLocation = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=7706c3d5881905dc71d41abe6fc11974`, {mode: 'cors'});
+    let GEO = geoLocation.json().then(GEO => {
+        const {lat, lon, state} = GEO[0];
+        if (!unitType === null) {
+            return {lat, lon, state, unitType};
+        } else {
+            return {lat, lon, state};
+        }
+    }).then();
+    
 }
 
 export {

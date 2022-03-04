@@ -1,4 +1,5 @@
 const path = require('path');
+// const moment = require('moment');
 // require("svg-url-loader!./file.svg");
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -14,6 +15,16 @@ module.exports = {
     //         title: 'Development'
     //     })
     // ]
+    // plugins: [
+    //     // To strip all locales except “en”
+    //     new MomentLocalesPlugin(),
+
+    //     // Or: To strip all locales except “en”, “es-us” and “ru”
+    //     // (“en” is built into Moment and can’t be removed)
+    //     new MomentLocalesPlugin({
+    //         localesToKeep: ['es-us', 'ru'],
+    //     }),
+    // ],
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
@@ -29,41 +40,6 @@ module.exports = {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
             },
-            // {
-            //     test: /\.svg$/,
-            //     type: 'asset',
-            //     use: 'svgo-loader'
-            // },
-            // {
-            //     test: /\.svg/,
-            //     use: {
-            //       loader: "svg-url-loader",
-            //       options: {
-            //         // make loader to behave like url-loader, for all svg files
-            //         encoding: "base64",
-            //       },
-            //     },
-            //   },
-            // {//use SVGR for imports in js/jsx files
-            //     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-            //     oneOf: [
-            //         {
-            //         use: [
-            //             'babel-loader',
-            //             {
-            //             loader: '@svgr/webpack',
-            //             options: {
-            //                 babel: false,
-            //                 icon: true,
-            //             },
-            //             }
-            //         ],
-            //         issuer: {
-            //             and: [/\.(js|jsx)$/],
-            //         },
-            //         },
-            //     ],
-            // }
         ],
     },
 };
