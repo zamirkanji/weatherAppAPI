@@ -56,4 +56,30 @@ class Weather {
 }
 
 
+
+
+
+
+
+//USING CLASS WEATHER
+// const dataAsync = async (v) => {
+//     try {
+//         let c;
+//         getGeoLocation(v).then(async geo => {
+//             c = await getData(geo['lat'], geo['lon']);
+//             console.log(c);
+//             return c;
+//         }).then(c => {
+//             const t = timeOut(displayLoading())
+//             const weather = new Weather(c)
+//             return c;
+//         })
+//     }catch (err) {
+//         console.log(err);
+//     }
+    
+// }
+
+
+
 export default Weather;
