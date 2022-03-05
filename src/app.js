@@ -28,17 +28,23 @@ const getInputValue = async () => {
 }
 
 const toggleTempType = (() => {
+    const input = document.querySelector('#city-input');
     const btnTemp = document.querySelector('#switch-temp-type');
     btnTemp.addEventListener('click', e => {
+        let v = input.value;
+        console.log(v);
         e.preventDefault();
         console.log(e.target);
         if (btnTemp.value === 'F') {
             btnTemp.value = 'C';
             btnTemp.textContent = 'C°';
             //call getdata again but with metric unit type
-        } else {
+            dataAsync(v, 'metric');
+        } 
+        if (btnTemp.value === 'C') {
             btnTemp.value = 'F';
             btnTemp.textContent = 'F°';
+            // dataAsync(v);
         }
     })
 })();
@@ -47,40 +53,11 @@ const timeOut = () => {
     const timeOut = setTimeout((displayLoading) => {
        hideLoading();
     },1000)
-    return timeOut
+    return timeOut;
 }
 
 const clear = () => clearTimeout(timeOut);
 
-
-// const dataAsync = async (v) => {
-//     try {
-//         let c;
-//         let f;
-//         getGeoLocation(v).then(async geo => {
-//             c = await getData(geo['lat'], geo['lon'], geo.state);
-//             f = await getForecast(geo['lat'], geo['lon']);
-//             console.log(c);
-//             console.log(f);
-//             return c;
-//         }).then(c => {
-//             const t = timeOut(displayLoading());
-//             getName(c.name, c.state);
-//             getTemp(Math.round(c.main.temp) + '°');
-//             getWind(Math.round(c.wind.speed), Math.round(c.wind.deg));
-//             getHumidity(c.main.humidity + '%');
-//             getFeelsLike(c.main.feels_like + '°');
-//             getWeatherType(c.weather[0].main, c.weather[0].description);
-//             getVisibility(c.visibility);
-//             clear(t);
-//             checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description);
-//             // getSunriseAndSunset(c.sys.sunrise, c.sys.sunset);
-//             return c;
-//         })
-//     } catch (err) {
-//         console.log(err);
-//     }   
-// }
 const dataAsync = async (v) => {
     let c;
     let f;

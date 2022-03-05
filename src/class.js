@@ -1,10 +1,11 @@
 class Weather {
-    constructor({weather, name, wind, main, visibility}) {
+    constructor({weather, name, wind, main, visibility, sys}) {
         this.weather = weather,
         this.name = name, 
         this.wind = wind, 
         this.main = main,
-        this.visibility = visibility
+        this.visibility = visibility,
+        this.sys = sys
     }
 
     log() {

@@ -4,6 +4,14 @@ class Element {
     }
 }
 
+const changeHeaderOnScroll = () => {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.querySelector('.main-header').style.opacity = '.5';
+    } else {
+        document.querySelector('.main-header').style.opacity = '1';
+    }
+}
+
 const selectElement = (selector, removeOrAdd, specificClass) => {
     const item = document.querySelector(`${selector}`);
     item.classList.removeOrAdd(`${specificClass}`);
@@ -24,8 +32,6 @@ const hideLoading = () => {
     const titleContainer = document.querySelector('.title-container');
     loader.classList.remove('ripple');
     loader.classList.add('display');
-    // titleContainer.classList.add('display');
-    // titleContainer.classList.remove('title-container');
     cityContainer.classList.remove('display');
     cityContainer.classList.add('city-container');
     mainBody.classList.remove('display');
@@ -35,5 +41,6 @@ const hideLoading = () => {
 export {
     displayLoading,
     hideLoading,
-    selectElement
+    selectElement,
+    changeHeaderOnScroll
 }

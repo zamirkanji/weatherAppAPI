@@ -15,7 +15,7 @@ html, body {
     /* background: rgb(186,137,159);
     background: radial-gradient(circle, rgba(186,137,159,1) 0%, rgba(57,71,87,1) 100%); 
     background: -webkit-radial-gradient(circle, rgba(186,137,159,1) 0%, rgba(57,71,87,1) 100%); */
-    background-color: rgba(57,71,87,.7);
+    background-color: rgba(57,71,87,.9);
 }
 
 .main-container {
