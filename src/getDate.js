@@ -1,9 +1,10 @@
 class Date {
-    constructor(date, sunrise, sunset, time) {
+    constructor(date, sunrise, sunset, time, timezone) {
         this.date = date,
         this.sunrise = sunrise,
         this.sunset = sunset, 
-        this.time = time
+        this.time = time,
+        this.timezone = timezone
     }
 
     getDate() {
@@ -40,6 +41,11 @@ class Date {
     }
     getSunset() {
 
+    }
+
+    getTimeZone() {
+        var d = new Date((new Date().getTime())-25200*1000)
+        return d.toISOString()
     }
 }
 

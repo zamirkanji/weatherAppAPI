@@ -14,7 +14,7 @@ const load = () => {
             input.value = cityTemp.city;
             dataAsync(cityTemp.city, cityTemp.FC);
         }
-        // console.log(window.clientInformation);
+        console.log(window.clientInformation);
         // getTimeAndDate();
     })
 }

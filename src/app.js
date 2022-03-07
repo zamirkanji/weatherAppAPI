@@ -53,9 +53,17 @@ const toggleTempType = (() => {
     })
 })();
 
+// const timeOut = () => {
+//     const timeOut = setTimeout((displayLoading) => {
+//        hideLoading();
+//     },1000)
+//     return timeOut;
+// }
+
 const timeOut = () => {
-    const timeOut = setTimeout((displayLoading) => {
-       hideLoading();
+    const timeOut = setTimeout(async (displayLoading) => {
+        await displayLoading;
+        hideLoading();
     },1000)
     return timeOut;
 }
@@ -68,7 +76,6 @@ const dataAsync = async (v, tempType = undefined) => {
     try {
         c = await getAllData(v, tempType);
         const {name, weather, state, main, wind, visibility, sys} = c;
-        // console.log(name, weather, state, main, wind, visibility, sys);
         console.log(c);
         const t = timeOut(displayLoading());
         getForecastData(c.list);
@@ -88,8 +95,6 @@ const dataAsync = async (v, tempType = undefined) => {
         console.log(err);
     }   
 }
-
-
 
 const getName = (name, state) => {
     const city = document.querySelector('#city');
@@ -113,7 +118,7 @@ const getWind = (windSpeed, dir) => {
     } else if (dir <= 213.75 && dir >= 191.25) {
         direction === 'SSW';
     } else {
-        console.log(Error);
+        // console.log(Error);
     }
     wind.textContent = `${windSpeed}mph ${direction}`;
     return windSpeed;

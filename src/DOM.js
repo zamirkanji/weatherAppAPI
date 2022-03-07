@@ -22,7 +22,8 @@ const selectElement = (selector, removeOrAdd, specificClass) => {
 const displayLoading = () => {
     const loader = document.querySelector('#loader');
     loader.classList.remove('display');
-    loader.classList.add('ripple');
+    // loader.classList.add('ripple');
+    loader.classList.add('lds-default');
 }
 
 const hideLoading = () => {
@@ -30,7 +31,8 @@ const hideLoading = () => {
     const mainBody = document.querySelector('#main');
     const cityContainer = document.querySelector('#city-container');
     const titleContainer = document.querySelector('.title-container');
-    loader.classList.remove('ripple');
+    // loader.classList.remove('ripple');
+    loader.classList.remove('lds-default');
     loader.classList.add('display');
     cityContainer.classList.remove('display');
     cityContainer.classList.add('city-container');
