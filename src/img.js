@@ -14,10 +14,10 @@ import getTimeAndDate from './getDate';
 
 
 
-const checkWeather = (temp, weather, description, time) => {
-    let d = getTimeAndDate();
+const checkWeather = (temp, weather, description, qSelect) => {
+    // let d = getTimeAndDate();
     console.log(description);
-    const imgIcon = document.querySelector('#imgIcon');
+    const imgIcon = document.querySelector(`${qSelect}`);
     if (weather === 'Snow') {
         if (description === 'heavy snow') {
             imgIcon.src = heavySnow;
@@ -41,7 +41,9 @@ const checkWeather = (temp, weather, description, time) => {
 
     }
     if (weather === 'Clear') {
-        imgIcon.src = clear;
+        if (description === 'clear sky') {
+            imgIcon.src = clear;
+        }
     }
     if (weather === 'Mist') {
         imgIcon.src = cloudy;

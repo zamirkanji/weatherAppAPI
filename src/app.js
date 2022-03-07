@@ -12,6 +12,9 @@ const getInputValue = async () => {
     const mainBody = document.querySelector('#main');
     const main = document.querySelector('main');
     const notValidCity = document.querySelector('city-valid');
+    const switchTempType = document.querySelector('#switch-temp-type');
+
+    const tempType = switchTempType.value;
 
     form.addEventListener('submit', async (e) => {
         if(mainBody.classList.contains('main')) {
@@ -23,6 +26,7 @@ const getInputValue = async () => {
         }
         e.preventDefault();
         let v = input.value;
+        setLocalStorage(v, tempType);
         dataAsync(v);
     })
 }
@@ -58,23 +62,27 @@ const timeOut = () => {
 
 const clear = () => clearTimeout(timeOut);
 
-const dataAsync = async (v) => {
+const dataAsync = async (v, tempType = undefined) => {
     let c;
     let f;
     try {
-        c = await getAllData(v);
+        c = await getAllData(v, tempType);
+        const {name, weather, state, main, wind, visibility, sys} = c;
+        // console.log(name, weather, state, main, wind, visibility, sys);
         console.log(c);
         const t = timeOut(displayLoading());
+        getForecastData(c.list);
         getName(c.name, c.state);
         getTemp(Math.round(c.main.temp) + '°');
         getWind(Math.round(c.wind.speed), Math.round(c.wind.deg));
         getHumidity(c.main.humidity + '%');
-        getFeelsLike(c.main.feels_like + '°');
+        getFeelsLike(Math.round(c.main.feels_like) + '°');
         getWeatherType(c.weather[0].main, c.weather[0].description);
         getVisibility(c.visibility);
+        getPressure(c.main.pressure);
+        checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description, '#imgIcon');
+        getCloudCover(c.clouds.all + '%');
         clear(t);
-        checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description);
-        // getSunriseAndSunset(c.sys.sunrise, c.sys.sunset);
         return c;
     } catch (err) {
         console.log(err);
@@ -129,17 +137,17 @@ const getWeatherType = (w, d) => {
     return w;
 }
 
-// const getSunriseAndSunset = (sunrise, sunset) => {
-//     let sunriseUnix = sunrise;
-//     let sunsetUnix = sunset;
-//     console.log(sunrise, sunset);
-//     // sunriseUnix = new Date(sunrise).toLocaleTimeString('en-US');
-//     // sunsetUnix = new Date(sunset).toLocaleTimeString('en-US');
-//     // sunriseUnix = moment(sunrise).format('hh:mm:ss');
-//     sunriseUnix = moment(sunrise).utc('hh:mm:ss');
-//     sunsetUnix = moment(sunset).format('hh:mm:ss');
-//     console.log(sunriseUnix, sunsetUnix);
-// }
+const getCloudCover = (cc) => {
+    const cloudCover = document.querySelector('#cloud-cover-span');
+    cloudCover.textContent = cc;
+    return cc;
+}
+
+const getPressure = (p) => {
+    const pressure = document.querySelector('#pressure-span');
+    pressure.textContent = p;
+    return p;
+}
 
 const getVisibility = (v) => {
     const visibility = document.querySelector('#visibility-span');
@@ -148,8 +156,18 @@ const getVisibility = (v) => {
     return vMiles;
 }
 
+const getForecastData = (list) => {
+    // const d = new Weather(c);
+    list.forEach(item => {
+        // console.log(item);
+
+    })
+
+}
+
 export {
     getInputValue,
     displayLoading,
-    hideLoading
+    hideLoading,
+    dataAsync
 }

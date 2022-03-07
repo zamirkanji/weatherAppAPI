@@ -39,7 +39,6 @@ class Weather {
     getWeatherType = (w) => {
         const weather = document.querySelector('#weather');
         weather.textContent = w;
-        // displaySVG(w);
         showImg(w);
         return w;
     }
@@ -50,7 +49,7 @@ class Weather {
         return vMiles;
     }
 
-    getItem (data, el) {
+    setItem (data, el) {
         const element = document.querySelector(`${el}`);
         element.textContent = data;
     }
