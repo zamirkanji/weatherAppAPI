@@ -17,6 +17,7 @@ const getInputValue = async () => {
     const tempType = switchTempType.value;
 
     form.addEventListener('submit', async (e) => {
+        e.preventDefault();
         if(mainBody.classList.contains('main')) {
             mainBody.classList.remove('main');
             mainBody.classList.add('display');
@@ -24,53 +25,55 @@ const getInputValue = async () => {
         if (notValidCity) {
             main.removeChild(notValidCity);
         }
-        e.preventDefault();
         let v = input.value;
         setLocalStorage(v, tempType);
-        dataAsync(v);
+        dataAsync(v, 'imperial');
     })
 }
 
 const toggleTempType = (() => {
     const input = document.querySelector('#city-input');
-    const btnTemp = document.querySelector('#switch-temp-type');
-    btnTemp.addEventListener('click', e => {
+    const switchTempType = document.querySelector('#switch-temp-type');
+    
+    switchTempType.addEventListener('click', e => {
+        e.preventDefault();
+        const tempType = switchTempType.value;
         let v = input.value;
         console.log(v);
-        e.preventDefault();
         console.log(e.target);
-        if (btnTemp.value === 'F') {
-            btnTemp.value = 'C';
-            btnTemp.textContent = 'C°';
+        if (switchTempType.value === 'F') {
+            switchTempType.value = 'C';
+            switchTempType.textContent = 'C°';
             //call getdata again but with metric unit type
+            setLocalStorage(v, tempType);
             dataAsync(v, 'metric');
-        } 
-        if (btnTemp.value === 'C') {
-            btnTemp.value = 'F';
-            btnTemp.textContent = 'F°';
-            // dataAsync(v);
+        } else { 
+            switchTempType.value = 'F';
+            switchTempType.textContent = 'F°';
+            setLocalStorage(v, tempType);
+            dataAsync(v, 'imperial');
         }
     })
 })();
 
-// const timeOut = () => {
-//     const timeOut = setTimeout((displayLoading) => {
-//        hideLoading();
-//     },1000)
-//     return timeOut;
-// }
-
 const timeOut = () => {
-    const timeOut = setTimeout(async (displayLoading) => {
-        await displayLoading;
-        hideLoading();
+    const timeOut = setTimeout((displayLoading) => {
+       hideLoading();
     },1000)
     return timeOut;
 }
 
+// const timeOut = () => {
+//     const timeOut = setTimeout(async (displayLoading) => {
+//         await displayLoading;
+//         hideLoading();
+//     },1000)
+//     return timeOut;
+// }
+
 const clear = () => clearTimeout(timeOut);
 
-const dataAsync = async (v, tempType = undefined) => {
+const dataAsync = async (v, tempType) => {
     let c;
     let f;
     try {
@@ -138,7 +141,7 @@ const getWeatherType = (w, d) => {
     const weatherDescrip = document.querySelector('#weather-descrip');
     weather.textContent = `${w}, ${d}`;
     // weatherDescrip.textContent = d;
-    showImg(w);
+    // showImg(w);
     return w;
 }
 
