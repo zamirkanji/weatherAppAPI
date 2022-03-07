@@ -9,35 +9,36 @@
 <body>
     <div class="main-container">
         <header class="container header">
-            <!-- <div class="title-container">
+            <div class="title-container">
                 <h3 class="text" id="weather-title">Weather</h3>
-            </div> -->
-            <div class="container search-bar">
-                <form action="" id="form">
-                    <label for="city-input"></label>
-                    <input type="search" value="" id="city-input" autocomplete="home city" inputmode="" placeholder="Search for City..." spellcheck="true" required>
-                    <button type="submit" id="submit-btn">Search</button>
-                </form>
-                <!-- <input list="cities" id="city-list" name="city-list">
-                <datalist id="cities">
-                    <option value="test"></option>
-                </datalist> -->
             </div>
-            <!-- <div class="switch-container">
+            <!-- <div class="date-container">
 
-                <label class="switch" id="switch">
-                    <input type="checkbox" placeholder="F" value="F">
-                    <span class="slider round"></span>
-                </label>
             </div> -->
-            <div class="FC-container">
-                <button type="button" id="switch-temp-type" value="F">F°</button>
+            <div class="searchbar-fc-container">
+                <div class="container search-bar">
+                    <form action="" id="form">
+                        <label for="city-input"></label>
+                        <input type="search" value="" id="city-input" autocomplete="home city" inputmode="" placeholder="Search for City..." spellcheck="true" required>
+                        <button type="submit" id="submit-btn">Search</button>
+                    </form>
+                    <!-- <input list="cities" id="city-list" name="city-list">
+                    <datalist id="cities">
+                        <option value="test"></option>
+                    </datalist> -->
+                </div>
+                <div class="FC-container">
+                    <button type="button" id="switch-temp-type" value="F">F°</button>
+                </div>
             </div>
         </header>   
         <main>
+            <!-- <div id="loader" class="display loader">
+                <div></div>
+                <div></div>
+            </div> -->
             <div id="loader" class="display loader">
-                <div></div>
-                <div></div>
+                <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
             </div>
             <div id="main" class="display info">
                 <div id="city-container" class="display">
