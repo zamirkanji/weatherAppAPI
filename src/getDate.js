@@ -17,6 +17,12 @@ class Date {
         return time;
     }
 
+    currentLocalDate () {
+        const myDate = new Date();
+        const date = myDate.toLocaleDateString();
+        return date;
+    }
+
     getSunriseAndSunset() {
         // let sun = [this.sunrise, this.sunset];
     
@@ -62,4 +68,6 @@ class Date {
 //     const pst = new Date(myDate.to)
 // }
 
-// export default getTimeAndDate
+export {
+    Date
+}
