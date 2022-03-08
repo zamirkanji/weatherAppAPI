@@ -15,7 +15,7 @@ const load = () => {
         if (cityTemp === undefined || cityTemp === null) {
             return;
         } else {
-            dateContainer.textContent = date.currentLocalDate();
+            // dateContainer.textContent = date.currentLocalDate();
             cityTemp = JSON.parse(cityTemp);
             input.value = cityTemp.city;
             switchTempType.textContent = cityTemp.FC + '°';
