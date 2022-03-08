@@ -76,6 +76,8 @@ const clear = () => clearTimeout(timeOut);
 const dataAsync = async (v, tempType) => {
     let c;
     let f;
+    //use variable f and check if temptype is f or c (imperial or metric), then pass variable into functions that require
+
     try {
         c = await getAllData(v, tempType);
         const {name, weather, state, main, wind, visibility, sys} = c;
@@ -88,7 +90,7 @@ const dataAsync = async (v, tempType) => {
         getHumidity(c.main.humidity + '%');
         getFeelsLike(Math.round(c.main.feels_like) + '°');
         getWeatherType(c.weather[0].main, c.weather[0].description);
-        getVisibility(c.visibility);
+        getVisibility(c.visibility, 'miles');
         getPressure(c.main.pressure);
         checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description, '#imgIcon');
         getCloudCover(c.clouds.all + '%');
@@ -157,10 +159,11 @@ const getPressure = (p) => {
     return p;
 }
 
-const getVisibility = (v) => {
+const getVisibility = (v, m) => {
     const visibility = document.querySelector('#visibility-span');
-    const vMiles = 0.00062 / v;
-    visibility.textContent = vMiles;
+    // const vMiles =  0.00062 / v;
+    const vMiles = v / 1609.34;
+    visibility.textContent = Math.round(vMiles) + ' ' + m;
     return vMiles;
 }
 
