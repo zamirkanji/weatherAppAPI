@@ -38,6 +38,12 @@ const checkWeather = (temp, weather, description, qSelect) => {
         }
     }
     if (weather === 'Rain') {
+        if (description === 'light rain') {
+            imgIcon.src = rain;
+        }
+        if (description === 'moderate rain') {
+            imgIcon.src = heavyRain;
+        }
 
     }
     if (weather === 'Clear') {

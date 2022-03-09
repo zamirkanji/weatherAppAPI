@@ -1,3 +1,6 @@
+import moment from "moment";
+
+
 class Date {
     constructor(date, sunrise, sunset, time, timezone) {
         this.date = date,
@@ -17,8 +20,9 @@ class Date {
         return time;
     }
 
-    currentLocalDate () {
-        return date.js.time(); // (Time / Zone: "PDT/EDT etc.") => 10:04 AM
+    currentLocalDateAndTime () {
+        // return date.js.time(); // (Time / Zone: "PDT/EDT etc.") => 10:04 AM
+        return moment().format('MMMM Do YYYY, h:mm a');
     }
 
     getSunriseAndSunset() {

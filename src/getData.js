@@ -15,9 +15,10 @@ const getAllData = async (city, unitType) => {
         DATA = [await response.json(), await forecast.json()];
         console.log(DATA[0]);
         console.log(DATA[1]);
-        const {clouds, weather, main, wind, name, visibility, sys, timezone} = DATA[0];
+        const {clouds, weather, main, wind, name, visibility, sys, timezone, rain, snow} = DATA[0];
         const {daily} = DATA[1];
-        return {weather, main, wind, name, visibility, sys, timezone, state, daily, clouds};
+        return {weather, main, wind, name, visibility, sys, timezone, state, daily, clouds, rain, snow};
+        //rain and snow are measured in mm
     } catch(e) {
         console.log('rejected', e);
     }
