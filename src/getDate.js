@@ -18,9 +18,7 @@ class Date {
     }
 
     currentLocalDate () {
-        const myDate = new Date();
-        const date = myDate.toLocaleDateString();
-        return date;
+        return date.js.time(); // (Time / Zone: "PDT/EDT etc.") => 10:04 AM
     }
 
     getSunriseAndSunset() {

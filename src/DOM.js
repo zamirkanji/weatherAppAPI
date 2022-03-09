@@ -21,8 +21,14 @@ const selectElement = (selector, removeOrAdd, specificClass) => {
 
 const displayLoading = () => {
     const loader = document.querySelector('#loader');
+    const header = document.querySelector('header');
+    const main = document.querySelector('main');
+    if (!main.classList.contains('display')) {
+        main.classList.add('display');
+    }
+    header.classList.add('display');
     loader.classList.remove('display');
-    // loader.classList.add('ripple');
+    loader.classList.add('ripple');
     // loader.classList.add('lds-default');
 }
 
@@ -31,9 +37,16 @@ const hideLoading = () => {
     const mainBody = document.querySelector('#main');
     const cityContainer = document.querySelector('#city-container');
     const titleContainer = document.querySelector('.title-container');
-    // loader.classList.remove('ripple');
+    const header = document.querySelector('header');
+    const main = document.querySelector('main');
+
+    if (main.classList.contains('display')) {
+        main.classList.remove('display');
+    }
+    loader.classList.remove('ripple');
     // loader.classList.remove('lds-default');
     loader.classList.add('display');
+    header.classList.remove('display');
     cityContainer.classList.remove('display');
     cityContainer.classList.add('city-container');
     mainBody.classList.remove('display');

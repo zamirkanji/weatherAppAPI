@@ -3,6 +3,7 @@ import { displayLoading, hideLoading } from "./DOM";
 import {displaySVG, showImg, checkWeather} from './img';
 import { getLocalStorage, setLocalStorage } from "./localStorage";
 import Weather from "./class";
+import { Date } from "./getDate";
 // import {moment} from 'moment';
 import { moment } from "moment";
 
@@ -29,6 +30,8 @@ const getInputValue = async () => {
         setLocalStorage(v, tempType);
         dataAsync(v, 'imperial');
     })
+
+    // input.addEventListener('input')
 }
 
 const toggleTempType = (() => {
@@ -55,6 +58,13 @@ const toggleTempType = (() => {
         }
     })
 })();
+
+setInterval(function(e){ 
+    //code goes here that will be run every 5 seconds. 
+    const dateContainer = document.querySelector('.date-container');   
+    let myDate = new Date();
+    dateContainer.textContent = myDate.currentLocalDate();
+}, 1000);
 
 const timeOut = () => {
     const timeOut = setTimeout((displayLoading) => {
@@ -83,7 +93,7 @@ const dataAsync = async (v, tempType) => {
         const {name, weather, state, main, wind, visibility, sys} = c;
         console.log(c);
         const t = timeOut(displayLoading());
-        getForecastData(c.list);
+        // getForecastData(c.list);
         getName(c.name, c.state);
         getTemp(Math.round(c.main.temp) + '°');
         getWind(Math.round(c.wind.speed), Math.round(c.wind.deg));
@@ -118,14 +128,41 @@ const getWind = (windSpeed, dir) => {
     let direction;
     if (dir <= 11.25 && dir >= 348.75) {
         direction === 'N';
-    } else if (dir <= 236.25 && dir >= 213.75) {
-        direction === 'SW';
+    } else if (dir <= 33.75 && dir >= 11.25) {
+        direction === 'NNE';
+    } else if (dir <= 56.25 && dir >= 33.75) {
+        direction === 'NE';
+    } else if (dir <= 78.75 && dir >= 56.25) {
+        direction === 'ENE';
+    } else if (dir <= 101.75 && dir >= 78.75) {
+        direction === 'E';
+    } else if (dir <= 123.75 && dir >= 101.25) {
+        direction === 'ESE';
+    } else if (dir <= 146.25 && dir >= 123.75) {
+        direction === 'SE';
+    } else if (dir <= 168.75 && dir >= 146.25) {
+        direction === 'SSE';
+    } else if (dir <= 191.25 && dir >= 168.75) {
+        direction === 'S';
     } else if (dir <= 213.75 && dir >= 191.25) {
         direction === 'SSW';
+    } else if (dir <= 236.25 && dir >= 213.75) {
+        direction === 'SW';
+    } else if (dir <= 258.75 && dir >= 236.25) {
+        direction === 'WSW';
+    } else if (dir <= 281.25 && dir >= 258.75) {
+        direction === 'W';
+    } else if (dir <= 303.75 && dir >= 281.25) {
+        direction === 'WNW';
+    } else if (dir <= 326.25 && dir >= 303.75) {
+        direction === 'NW';
+    } else if (dir <= 348.75 && dir >= 326.25) {
+        direction === 'NNW';
     } else {
         // console.log(Error);
     }
-    wind.textContent = `${windSpeed}mph ${direction}`;
+    console.log(direction);
+    wind.textContent = `${windSpeed} mph ${direction}`;
     return windSpeed;
 }
 const getHumidity = (h) => {
@@ -167,14 +204,14 @@ const getVisibility = (v, m) => {
     return vMiles;
 }
 
-const getForecastData = (list) => {
-    // const d = new Weather(c);
-    list.forEach(item => {
-        // console.log(item);
+// const getForecastData = (list) => {
+//     // const d = new Weather(c);
+//     list.forEach(item => {
+//         // console.log(item);
 
-    })
+//     })
 
-}
+// }
 
 export {
     getInputValue,

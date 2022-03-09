@@ -68,7 +68,14 @@ main {
   /* height: 100%; */
   display: flex;
   /* align-items: center; */
-  justify-content: flex-start;
+  justify-content: space-between;
+
+}
+
+.date-container {
+  color: white;
+  letter-spacing: .7px;
+  font-weight: 300;
 }
 
 
@@ -130,10 +137,11 @@ main {
 }
 
 #weather-title {
-    font-size: 1.75rem;
-    font-weight: 300;
-    letter-spacing: .9px;
-    color: white;
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: .7px;
+  color: white;
 }
 
 .data-color {
@@ -423,7 +431,7 @@ main {
 .ripple {
   display: inline-block;
   position: relative;
-  /* justify-self: center; */
+  justify-self: center;
   align-self: center;
   width: 80px;
   height: 80px;
