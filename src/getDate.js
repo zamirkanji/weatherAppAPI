@@ -11,7 +11,7 @@ class Date {
     }
 
     getDate() {
-        return this.date;
+        return moment().format('MMMM Do');
     }
 
     currentLocalTimeString() {

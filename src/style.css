@@ -19,8 +19,8 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  gap: 25px;
+  /* padding: 0 10px 10px 10px; */
+  /* gap: 25px; */
 }
 
 header {
@@ -30,8 +30,8 @@ header {
   justify-content: space-between;
   width: 100%;
   padding: 20px;
-  background-color: rgba(36, 36, 36, 0.623);
-  border-radius: 10px;
+  /* background-color: rgba(36, 36, 36, 0.623); */
+  border-radius: 0 0 10px 10px;
   gap: 25px;
 }
 
@@ -41,20 +41,20 @@ main {
   flex-direction: column;
   /* gap: 10px; */
   /* background-color: rgba(36, 36, 36, 0); */
+  /* padding: 20px; */
+  
 }
 
 
 #main {
   display: flex;
   flex-direction: column;
-  /* justify-content: center;
-  align-items: center; */
   gap: 25px;
-  /* flex: .85; */
-  /* flex: 1; */
+  padding: 25px 20px 25px 20px;
   height: 100%;
-  border-radius: 10px;
-  /* background-color: rgba(108, 208, 255, 0.068); */
+  border-radius: 0 0 10px 10px;
+  background-color: rgba(99, 158, 197, 0.288);
+  /* background-color: rgba(208, 255, 255, 0); */
 }
 
 .display {
@@ -63,7 +63,6 @@ main {
 
 .visible {
   visibility: hidden;
-  /* visibility: hidden; */
 }
 
 .title-container{
@@ -86,7 +85,6 @@ main {
   letter-spacing: .8px;
   font-weight: 200;
   font-size: .75rem;
-  /* font-size: 100%; */
 }
 
 
@@ -103,9 +101,7 @@ main {
 }
 
 .searchbar-fc-container {
-  /* background-color: rgb(67, 87, 105); */
   display: flex;
-  /* justify-content: space-between; */
 }
 
 .search-bar {
@@ -148,14 +144,19 @@ main {
 }
 
 .data-color {
-    color: rgb(89, 189, 255);
+  color: rgb(89, 189, 255);
+  font-weight: 200;
+  letter-spacing: .7px;
+  font-size: 1.25rem;
 }
 
 .text {
-    color: rgba(255, 255, 255, 0.829);
+    /* color: rgba(255, 255, 255, 0.829); */
     font-size: 1.25rem;
     font-weight: 300;
     letter-spacing: .8px;
+    /* color: rgb(0, 0, 0); */
+    color: white;
 }
 
 
@@ -173,6 +174,7 @@ main {
   flex-direction: column;
   /* background-color: rgba(0, 0, 0, 0.318);
   background-color: rgba(80, 80, 80, 0.185); */
+  background-color: rgba(0, 0, 0, 0.473);
 }
 
 #cityIcon {
@@ -215,44 +217,20 @@ img {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.218);
+  background-color: rgba(0, 0, 0, 0.473);
   border-radius: 10px;
   gap: 10px;
   padding: 10px;
 }
 
-#forecast-title {
-  flex: .4;
-  font-size: 1.75rem;
-  font-weight: 300;
-  letter-spacing: .8px;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* #forecast-container {
-  flex: .6;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: rgba(57,71,87,.3);
-  border-radius: 10px;
-  padding: 10px;
-  gap: 10px;
-}
-
-.forecastDay {
-  flex: 1;
+.forecast-title-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(72, 116, 145, 0.4);
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-} */
+  flex: .4;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 #info-container {
   flex: .6;
@@ -409,6 +387,14 @@ height: 34px;
   font-weight: 200;
   font-size: .75rem;
   letter-spacing: .8px;
+}
+
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: .8px;
+  color: white;
 }
 
 

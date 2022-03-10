@@ -59,11 +59,14 @@ const toggleTempType = (() => {
 })();
 
 setInterval(function(e){ 
-    //code goes here that will be run every 5 seconds. 
-    const dateContainer = document.querySelector('.date-container');   
+    //code goes here that will be run every 1 second. 
+    const dateContainer = document.querySelector('.date-container');
+    // const forecastDate = document.querySelector('#forecast-date');   
     let myDate = new Date();
     dateContainer.textContent = myDate.currentLocalDateAndTime();
 }, 1000);
+
+
 
 
 const timeOut = () => {
@@ -124,6 +127,7 @@ const dataAsync = async (v, tempType) => {
         getPressure(c.main.pressure);
         checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description, '#imgIcon');
         getCloudCover(c.clouds.all + '%');
+        dateForForecast();
         clear(t);
         return c;
     } catch (err) {
@@ -197,6 +201,16 @@ const getWind = (windSpeed, dir) => {
     // wind.textContent = `${windSpeed} mph ${direction}`;
     wind.textContent = `${windSpeed} mph`;
     return windSpeed;
+}
+
+const dateForForecast = () => {
+    const forecastDate = document.querySelector('#forecast-date');   
+    let myDate = new Date();
+    let dayPlus7 = myDate.getDate();
+    dayPlus7 = dayPlus7.slice(-3, -2);
+    console.log(dayPlus7);
+    dayPlus7 = Number(dayPlus7) + 6;
+    forecastDate.textContent = `${myDate.getDate()} - ${dayPlus7}`;
 }
 const getHumidity = (h) => {
     const humidity = document.getElementById('humidity-span');
