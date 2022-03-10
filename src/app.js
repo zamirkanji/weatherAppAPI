@@ -1,10 +1,9 @@
-import {getData, getGeoLocation, getForecast, getAllData} from "./getData";
+import {getAllData} from "./getData";
 import { displayLoading, hideLoading } from "./DOM";
 import {displaySVG, showImg, checkWeather} from './img';
 import { getLocalStorage, setLocalStorage } from "./localStorage";
 import Weather from "./class";
 import { Date } from "./getDate";
-// import {moment} from 'moment';
 import { moment } from "moment";
 
 const getInputValue = async () => {
@@ -67,31 +66,31 @@ setInterval(function(e){
 }, 1000);
 
 
-// const timeOut = () => {
-//     const timeOut = setTimeout((displayLoading) => {
-//        hideLoading();
-//     },1000)
-//     return timeOut;
-// }
-
-const timeOut = (c) => {
-    const t = setTimeout(() => {
-        hideLoading();
-        clear(t);
-        getForecastData(c.daily);
-        getName(c.name, c.state);
-        getTemp(Math.round(c.main.temp) + '°');
-        getWind(Math.round(c.wind.speed), Math.round(c.wind.deg));
-        getHumidity(c.main.humidity + '%');
-        getFeelsLike(Math.round(c.main.feels_like) + '°');
-        getWeatherType(c.weather[0].main, c.weather[0].description);
-        getVisibility(c.visibility, 'miles');
-        getPressure(c.main.pressure);
-        checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description, '#imgIcon');
-        getCloudCover(c.clouds.all + '%');
-    }, 1000);
-    displayLoading();
+const timeOut = () => {
+    const timeOut = setTimeout((displayLoading) => {
+       hideLoading();
+    },1000)
+    return timeOut;
 }
+
+// const timeOut = (c) => {
+//     const t = setTimeout(() => {
+//         hideLoading();
+//         clear(t);
+//         getForecastData(c.daily);
+//         getName(c.name, c.state);
+//         getTemp(Math.round(c.main.temp) + '°');
+//         getWind(Math.round(c.wind.speed), Math.round(c.wind.deg));
+//         getHumidity(c.main.humidity + '%');
+//         getFeelsLike(Math.round(c.main.feels_like) + '°');
+//         getWeatherType(c.weather[0].main, c.weather[0].description);
+//         getVisibility(c.visibility, 'miles');
+//         getPressure(c.main.pressure);
+//         checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description, '#imgIcon', c.snow['1h'], c.rain);
+//         getCloudCover(c.clouds.all + '%');
+//     }, 1000);
+//     displayLoading();
+// }
 
 
 // const timeOut = () => {
@@ -109,35 +108,38 @@ const dataAsync = async (v, tempType) => {
     let f;
     //use variable f and check if temptype is f or c (imperial or metric), then pass variable into functions that require
 
-    // try {
-    //     c = await getAllData(v, tempType);
-    //     const {name, weather, state, main, wind, visibility, sys} = c;
-    //     console.log(c);
-    //     const t = timeOut(displayLoading());
-    //     getForecastData(c.daily);
-    //     getName(c.name, c.state);
-    //     getTemp(Math.round(c.main.temp) + '°');
-    //     getWind(Math.round(c.wind.speed), Math.round(c.wind.deg));
-    //     getHumidity(c.main.humidity + '%');
-    //     getFeelsLike(Math.round(c.main.feels_like) + '°');
-    //     getWeatherType(c.weather[0].main, c.weather[0].description);
-    //     getVisibility(c.visibility, 'miles');
-    //     getPressure(c.main.pressure);
-    //     checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description, '#imgIcon');
-    //     getCloudCover(c.clouds.all + '%');
-    //     clear(t);
-    //     return c;
-    // } catch (err) {
-    //     console.log(err);
-    // }   
     try {
         c = await getAllData(v, tempType);
         const {name, weather, state, main, wind, visibility, sys} = c;
         console.log(c);
-        timeOut(c);
+        const t = timeOut(displayLoading());
+        getForecastData(c.daily);
+        getName(c.name, c.state);
+        getTemp(Math.round(c.main.temp) + '°');
+        getWind(Math.round(c.wind.speed), Math.round(c.wind.deg));
+        getHumidity(c.main.humidity + '%');
+        getFeelsLike(Math.round(c.main.feels_like) + '°');
+        getWeatherType(c.weather[0].main, c.weather[0].description);
+        getVisibility(c.visibility, 'miles');
+        getPressure(c.main.pressure);
+        checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description, '#imgIcon');
+        getCloudCover(c.clouds.all + '%');
+        clear(t);
+        return c;
     } catch (err) {
         console.log(err);
     }   
+
+
+
+    // try {
+    //     c = await getAllData(v, tempType);
+    //     const {name, weather, state, main, wind, visibility, sys} = c;
+    //     console.log(c);
+    //     timeOut(c);
+    // } catch (err) {
+    //     console.log(err);
+    // }   
 }
 
 const getName = (name, state) => {

@@ -22,10 +22,13 @@ const selectElement = (selector, removeOrAdd, specificClass) => {
 const displayLoading = () => {
     const loader = document.querySelector('#loader');
     const header = document.querySelector('header');
-    const main = document.querySelector('main');
+    const main = document.querySelector('#main');
     if (!main.classList.contains('display')) {
         main.classList.add('display');
     }
+    // if (!main.classList.contains('visibility')) {
+    //     main.classList.add('visibility');
+    // }
     header.classList.add('display');
     loader.classList.remove('display');
     loader.classList.add('ripple');
@@ -38,11 +41,14 @@ const hideLoading = () => {
     const cityContainer = document.querySelector('#city-container');
     const titleContainer = document.querySelector('.title-container');
     const header = document.querySelector('header');
-    const main = document.querySelector('main');
+    const main = document.querySelector('#main');
 
     if (main.classList.contains('display')) {
         main.classList.remove('display');
     }
+    // if (main.classList.contains('visibility')) {
+    //     main.classList.remove('visibility');
+    // }
     loader.classList.remove('ripple');
     // loader.classList.remove('lds-default');
     loader.classList.add('display');

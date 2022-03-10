@@ -12,7 +12,7 @@ html {
 
 body {
   height: 100%;
-  background-color: rgba(39, 49, 59, 0.9); 
+  background-color: rgb(0, 0, 0);
 }
 
 .main-container {
@@ -24,37 +24,46 @@ body {
 }
 
 header {
-  flex: 1;
+  flex: .25;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.514);
+  background-color: rgba(36, 36, 36, 0.623);
   border-radius: 10px;
   gap: 25px;
 }
 
 main {
-  flex: 2;
+  flex: 2.75;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  /* gap: 10px; */
+  /* background-color: rgba(36, 36, 36, 0); */
 }
 
 
 #main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    flex: .85;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  gap: 25px;
+  /* flex: .85; */
+  /* flex: 1; */
+  height: 100%;
+  border-radius: 10px;
+  /* background-color: rgba(108, 208, 255, 0.068); */
 }
 
 .display {
-    display: none;
+  display: none !important;
+}
+
+.visible {
+  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 .title-container{
@@ -67,16 +76,15 @@ main {
 
 #weather-title {
   font-size: 1.75rem;
-  /* font-size: 100%; */
   font-weight: 300;
-  letter-spacing: .7px;
+  letter-spacing: .8px;
   color: white;
 }
 
 .date-container {
   color: white;
-  letter-spacing: .7px;
-  font-weight: 300;
+  letter-spacing: .8px;
+  font-weight: 200;
   font-size: .75rem;
   /* font-size: 100%; */
 }
@@ -132,11 +140,11 @@ main {
 }
 
 .switch-container {
-    flex: .25;
-    /* height: 100%; */
-    display: flex;
-    /* align-items: center; */
-    justify-content: flex-end;
+  flex: .25;
+  /* height: 100%; */
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-end;
 }
 
 .data-color {
@@ -144,8 +152,10 @@ main {
 }
 
 .text {
-    color: black;
+    color: rgba(255, 255, 255, 0.829);
     font-size: 1.25rem;
+    font-weight: 300;
+    letter-spacing: .8px;
 }
 
 
@@ -154,13 +164,15 @@ main {
 }
 
 .city-container {
-    flex: .25;
-    width: 100%;
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.318);
+  flex: .25;
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  /* background-color: rgba(0, 0, 0, 0.318);
+  background-color: rgba(80, 80, 80, 0.185); */
 }
 
 #cityIcon {
@@ -183,7 +195,7 @@ img {
 
 #weather, #weather-descrip {
   color: white;
-  font-weight: 300;
+  font-weight: 200;
   font-size: 1rem;
   letter-spacing: .8px;
 }
@@ -191,8 +203,10 @@ img {
 .weather-descrip {
   flex: .5;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
+  gap: 3px;
 }
 
 
@@ -209,7 +223,7 @@ img {
 
 #forecast-title {
   flex: .4;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 300;
   letter-spacing: .8px;
   color: white;
@@ -254,12 +268,13 @@ img {
 #forecast-container {
   flex: .6;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   width: 100%;
   /* background-color: rgba(0, 0, 0, 0.218); */
   border-radius: 10px;
   padding: 10px;
   gap: 10px;
+  overflow: auto;
 }
 
 #temp-span {
@@ -387,6 +402,13 @@ background-color: rgb(99, 158, 197);
 color: white;
 width: 25%;
 height: 34px;
+}
+
+#amount-container {
+  color: white;
+  font-weight: 200;
+  font-size: .75rem;
+  letter-spacing: .8px;
 }
 
 

@@ -11,15 +11,59 @@ import sunny from './img/julien-flutto-ZEDjKAuS8u0-unsplash.jpg';
 import rainy from './img/valentin-muller-bWtd1ZyEy6w-unsplash.jpg';
 
 import getTimeAndDate from './getDate';
+import { getLocalStorage } from './localStorage';
 
+const checkTempType = () => {
+    let tt = getLocalStorage();
+    tt = JSON.parse(tt);
+    tt = tt.FC;
+    console.log(tt);
+    return tt;
+}
 
+const displaySnowAmount = (a, tt) => {
+    if (tt === 'F') {
+        let snowInches = a / 25.4;
+        snowInches = `${Math.round(snowInches * 100) / 100} inches`;
+        console.log(snowInches);
+        return snowInches;
+    }
+    if (tt === 'C') {
+        let snowMM = a;
+        snowMM = snowMM + 'mm'
+        return snowMM;
+    }
+}
 
-const checkWeather = (temp, weather, description, qSelect) => {
+const displayRainAmount = (a, tt) => {
+    if (tt === 'F') {
+        let rainInches = a / 25.4;
+        rainInches = `${Math.round(rainInches * 100) / 100} inches`;
+        return rainInches;
+    }
+    if (tt === 'C') {
+        let rainMM = a;
+        rainMM = rainMM + 'mm'
+        return rainMM;
+    }
+}
+
+const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmount) => {
     // let d = getTimeAndDate();
     console.log(description);
+    console.log(snowAmount);
     const imgIcon = document.querySelector(`${qSelect}`);
+    const amountContainer = document.querySelector('#amount-container'); 
+    let tt = checkTempType();
     if (weather === 'Snow') {
+        let a = displaySnowAmount(snowAmount, tt);
+        // a = Math.round(a * 100) / 100;
+        amountContainer.textContent = `It has snowed ${a} in the last Hour`;
+
         if (description === 'heavy snow') {
+            imgIcon.src = heavySnow;
+        }
+        if (description === 'snow') {
             imgIcon.src = heavySnow;
         }
     }
@@ -38,6 +82,10 @@ const checkWeather = (temp, weather, description, qSelect) => {
         }
     }
     if (weather === 'Rain') {
+        let a = displayRainAmount(rainAmount, tt);
+        a = Math.round(a * 100) / 100;
+        amountContainer.textContent = `It has rained ${a} in the last Hour`;
+
         if (description === 'light rain') {
             imgIcon.src = rain;
         }
