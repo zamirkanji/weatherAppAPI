@@ -125,7 +125,7 @@ const dataAsync = async (v, tempType) => {
         getWeatherType(c.weather[0].main, c.weather[0].description);
         getVisibility(c.visibility, 'miles');
         getPressure(c.main.pressure);
-        checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description, '#imgIcon');
+        checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description, '#imgIcon', c.snow??['1h'], c.rain??['1h']);
         getCloudCover(c.clouds.all + '%');
         dateForForecast();
         clear(t);

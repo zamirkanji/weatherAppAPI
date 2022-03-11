@@ -50,15 +50,28 @@ const displayRainAmount = (a, tt) => {
 
 const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmount) => {
     // let d = getTimeAndDate();
+    let dataTrue; 
+    if (!snowAmount === undefined) {
+        dataTrue = true;
+    } else {
+        dataTrue = false;
+    }
+    if (!rainAmount === undefined) {
+        dataTrue = true;
+    } else {
+        dataTrue = false;
+    }
     console.log(description);
     console.log(snowAmount);
     const imgIcon = document.querySelector(`${qSelect}`);
     const amountContainer = document.querySelector('#amount-container'); 
     let tt = checkTempType();
     if (weather === 'Snow') {
-        let a = displaySnowAmount(snowAmount, tt);
-        // a = Math.round(a * 100) / 100;
-        amountContainer.textContent = `It has snowed ${a} in the last Hour`;
+        if (dataTrue) {
+            let a = displaySnowAmount(snowAmount, tt);
+            // a = Math.round(a * 100) / 100;
+            amountContainer.textContent = `It has snowed ${a} in the last Hour`;
+        }
 
         if (description === 'heavy snow') {
             imgIcon.src = heavySnow;
