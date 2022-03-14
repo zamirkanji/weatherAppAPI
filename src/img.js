@@ -50,6 +50,7 @@ const displayRainAmount = (a, tt) => {
 
 const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmount) => {
     // let d = getTimeAndDate();
+    // console.log(temp, rainAmount);
     let dataTrue; 
     if (!snowAmount === undefined) {
         dataTrue = true;
@@ -96,6 +97,7 @@ const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmoun
     }
     if (weather === 'Rain') {
         let a = displayRainAmount(rainAmount, tt);
+        console.log(rainAmount);
         a = Math.round(a * 100) / 100;
         amountContainer.textContent = `It has rained ${a} in the last Hour`;
 
@@ -103,6 +105,9 @@ const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmoun
             imgIcon.src = rain;
         }
         if (description === 'moderate rain') {
+            imgIcon.src = heavyRain;
+        }
+        if (description === 'heavy intensity rain') {
             imgIcon.src = heavyRain;
         }
 

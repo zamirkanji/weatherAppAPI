@@ -2,8 +2,8 @@ import {getAllData} from "./getData";
 import { displayLoading, hideLoading } from "./DOM";
 import {displaySVG, showImg, checkWeather} from './img';
 import { getLocalStorage, setLocalStorage } from "./localStorage";
-import Weather from "./class";
-import { Date } from "./getDate";
+// import Weather from "./class";
+import { MyDate } from "./getDate";
 import { moment } from "moment";
 
 const getInputValue = async () => {
@@ -62,11 +62,9 @@ setInterval(function(e){
     //code goes here that will be run every 1 second. 
     const dateContainer = document.querySelector('.date-container');
     // const forecastDate = document.querySelector('#forecast-date');   
-    let myDate = new Date();
+    let myDate = new MyDate();
     dateContainer.textContent = myDate.currentLocalDateAndTime();
 }, 1000);
-
-
 
 
 const timeOut = () => {
@@ -75,34 +73,6 @@ const timeOut = () => {
     },1000)
     return timeOut;
 }
-
-// const timeOut = (c) => {
-//     const t = setTimeout(() => {
-//         hideLoading();
-//         clear(t);
-//         getForecastData(c.daily);
-//         getName(c.name, c.state);
-//         getTemp(Math.round(c.main.temp) + '°');
-//         getWind(Math.round(c.wind.speed), Math.round(c.wind.deg));
-//         getHumidity(c.main.humidity + '%');
-//         getFeelsLike(Math.round(c.main.feels_like) + '°');
-//         getWeatherType(c.weather[0].main, c.weather[0].description);
-//         getVisibility(c.visibility, 'miles');
-//         getPressure(c.main.pressure);
-//         checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description, '#imgIcon', c.snow['1h'], c.rain);
-//         getCloudCover(c.clouds.all + '%');
-//     }, 1000);
-//     displayLoading();
-// }
-
-
-// const timeOut = () => {
-//     const timeOut = setTimeout(async (displayLoading) => {
-//         await displayLoading;
-//         hideLoading();
-//     },1000)
-//     return timeOut;
-// }
 
 const clear = () => clearTimeout(timeOut);
 
@@ -113,37 +83,29 @@ const dataAsync = async (v, tempType) => {
 
     try {
         c = await getAllData(v, tempType);
-        const {name, weather, state, main, wind, visibility, sys} = c;
+        const {name, weather, state, main, wind, visibility, sys, daily, rain, snow, } = c;
         console.log(c);
         const t = timeOut(displayLoading());
-        getForecastData(c.daily);
-        getName(c.name, c.state);
-        getTemp(Math.round(c.main.temp) + '°');
-        getWind(Math.round(c.wind.speed), Math.round(c.wind.deg));
-        getHumidity(c.main.humidity + '%');
-        getFeelsLike(Math.round(c.main.feels_like) + '°');
-        getWeatherType(c.weather[0].main, c.weather[0].description);
-        getVisibility(c.visibility, 'miles');
-        getPressure(c.main.pressure);
-        checkWeather(c.main.temp, c.weather[0].main, c.weather[0].description, '#imgIcon', c.snow??['1h'], c.rain??['1h']);
+        // let d = new Weather(weather, name, wind, main, visibility, sys, daily, sys.sunrise, sys.sunset);
+        getForecastData(daily);
+        getName(name, state);
+        getTemp(Math.round(main.temp) + '°');
+        getWind(Math.round(wind.speed), Math.round(wind.deg));
+        getHumidity(main.humidity + '%');
+        getFeelsLike(Math.round(main.feels_like) + '°');
+        getWeatherType(weather[0].main, weather[0].description);
+        getVisibility(visibility, 'miles');
+        getPressure(main.pressure);
+        // console.log(rain['1h']);
+        checkWeather(main.temp, weather[0].main, weather[0].description, '#imgIcon', c.snow??['1h'], c.rain??['1h']);
         getCloudCover(c.clouds.all + '%');
-        dateForForecast();
+        dateForForecast(sys.sunrise, sys.sunset);
+        riseSet(sys.sunrise, sys.sunset, c.timezone, c.timezone_offset);
         clear(t);
         return c;
     } catch (err) {
         console.log(err);
-    }   
-
-
-
-    // try {
-    //     c = await getAllData(v, tempType);
-    //     const {name, weather, state, main, wind, visibility, sys} = c;
-    //     console.log(c);
-    //     timeOut(c);
-    // } catch (err) {
-    //     console.log(err);
-    // }   
+    } 
 }
 
 const getName = (name, state) => {
@@ -160,7 +122,7 @@ const getTemp = (t) => {
 
 const getWind = (windSpeed, dir) => {
     const wind = document.getElementById('wind-span');
-    console.log(dir);
+    // console.log(dir);
     // let direction;
     // if (dir < 11.25 && dir >= 348.75) {
     //     direction === 'N';
@@ -203,14 +165,23 @@ const getWind = (windSpeed, dir) => {
     return windSpeed;
 }
 
+const riseSet = (rise, set, tz, timezone_offset) => {
+    let sunR = new Date(rise);
+    let sunS = new Date(set);
+    // const options = {timezone: timezone, timeZoneName: 'long'};
+    console.log(sunR.toLocaleString('en-US', {timeZone: tz}));
+    console.log(sunS.toLocaleTimeString('en-US', {timeZone: tz}));
+    console.log(sunS.getTimezoneOffset(timezone_offset));
+    // console.log(sunR.currentLocalDateAndTime())
+    // console.log(sunS.toLocaleDateString('en-US'));
+}
+
 const dateForForecast = () => {
     const forecastDate = document.querySelector('#forecast-date');   
-    let myDate = new Date();
-    let dayPlus7 = myDate.getDate();
-    dayPlus7 = dayPlus7.slice(-3, -2);
-    console.log(dayPlus7);
-    dayPlus7 = Number(dayPlus7) + 6;
-    forecastDate.textContent = `${myDate.getDate()} - ${dayPlus7}`;
+    let myDate = new MyDate();
+    let todaysDate = myDate.getDate();
+    let sevenDays = myDate.addSevenDays();
+    forecastDate.textContent = `${todaysDate} - ${sevenDays}`;
 }
 const getHumidity = (h) => {
     const humidity = document.getElementById('humidity-span');
@@ -253,10 +224,16 @@ const getVisibility = (v, m) => {
 
 const getForecastData = (daily) => {
     // const d = new Weather(c);
-    daily.filter(obj => {
-        console.log(obj.weather);
-    })
-
+    const forecastDay = document.querySelectorAll('.forecastDay');
+    let dailyTemps = [];
+    for (const obj of daily) {
+        let maxTemp = obj.temp.max;
+        let minTemp = obj.temp.min;
+        let weatherDescription = [obj.weather[0].main, obj.weather[0].description];
+        dailyTemps.push({maxTemp, minTemp, weatherDescription});
+    }
+    console.log(dailyTemps);
+    return dailyTemps;
 }
 
 export {
