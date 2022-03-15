@@ -1,16 +1,39 @@
+import { getForecastData } from "./app";
+import { checkWeather } from "./img";
+
 class Element {
     constructor() {
         
     }
 }
 
+const displayForecast = (daily) => {
+    const forecastDay = document.querySelectorAll('.forecastDay');
+    let tempArray = getForecastData(daily);
+    console.log(tempArray);
+    tempArray.forEach((temp, index) => {
+        console.log(temp);
+        // console.log(index);
+        forecastDay.forEach(el => {
+            el.textContent = `${temp.maxTemp}/${temp.minTemp}`;
+            // console.log(el);
+            let p = el.id;
+            // const item = document.querySelector(`#${p}`);
+            // console.log(item);
+            checkWeather(null, temp.weatherDescription[0], temp.weatherDescription[1],  `#${p}`, null, null);
+            return;
+        })
+        return;
+    })
+}
+
 const changeHeaderOnScroll = () => {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.querySelector('.main-header').style.opacity = '.5';
+        document.querySelector('.header').style.opacity = '.5';
     } else {
-        document.querySelector('.main-header').style.opacity = '1';
+        document.querySelector('.header').style.opacity = '1';
     }
-}
+};
 
 const selectElement = (selector, removeOrAdd, specificClass) => {
     const item = document.querySelector(`${selector}`);
@@ -63,5 +86,6 @@ export {
     displayLoading,
     hideLoading,
     selectElement,
-    changeHeaderOnScroll
+    changeHeaderOnScroll,
+    displayForecast
 }

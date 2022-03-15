@@ -5,6 +5,8 @@ import { getLocalStorage, setLocalStorage } from "./localStorage";
 // import Weather from "./class";
 import { MyDate } from "./getDate";
 import { moment } from "moment";
+import { displayForecast } from "./DOM";
+import { changeHeaderOnScroll } from "./DOM";
 
 const getInputValue = async () => {
     const form = document.querySelector('#form');
@@ -87,7 +89,7 @@ const dataAsync = async (v, tempType) => {
         console.log(c);
         const t = timeOut(displayLoading());
         // let d = new Weather(weather, name, wind, main, visibility, sys, daily, sys.sunrise, sys.sunset);
-        getForecastData(daily);
+        // getForecastData(daily);
         getName(name, state);
         getTemp(Math.round(main.temp) + '°');
         getWind(Math.round(wind.speed), Math.round(wind.deg));
@@ -97,6 +99,7 @@ const dataAsync = async (v, tempType) => {
         getVisibility(visibility, 'miles');
         getPressure(main.pressure);
         // console.log(rain['1h']);
+        displayForecast(daily);
         checkWeather(main.temp, weather[0].main, weather[0].description, '#imgIcon', c.snow??['1h'], c.rain??['1h']);
         getCloudCover(c.clouds.all + '%');
         dateForForecast(sys.sunrise, sys.sunset);
@@ -169,9 +172,9 @@ const riseSet = (rise, set, tz, timezone_offset) => {
     let sunR = new Date(rise);
     let sunS = new Date(set);
     // const options = {timezone: timezone, timeZoneName: 'long'};
-    console.log(sunR.toLocaleString('en-US', {timeZone: tz}));
-    console.log(sunS.toLocaleTimeString('en-US', {timeZone: tz}));
-    console.log(sunS.getTimezoneOffset(timezone_offset));
+    // console.log(sunR.toLocaleString('en-US', {timeZone: tz}));
+    // console.log(sunS.toLocaleTimeString('en-US', {timeZone: tz}));
+    // console.log(sunS.getTimezoneOffset(timezone_offset));
     // console.log(sunR.currentLocalDateAndTime())
     // console.log(sunS.toLocaleDateString('en-US'));
 }
@@ -224,7 +227,7 @@ const getVisibility = (v, m) => {
 
 const getForecastData = (daily) => {
     // const d = new Weather(c);
-    const forecastDay = document.querySelectorAll('.forecastDay');
+    
     let dailyTemps = [];
     for (const obj of daily) {
         let maxTemp = obj.temp.max;
@@ -232,7 +235,6 @@ const getForecastData = (daily) => {
         let weatherDescription = [obj.weather[0].main, obj.weather[0].description];
         dailyTemps.push({maxTemp, minTemp, weatherDescription});
     }
-    console.log(dailyTemps);
     return dailyTemps;
 }
 
@@ -241,5 +243,6 @@ export {
     displayLoading,
     hideLoading,
     dataAsync,
-    timeOut
+    timeOut,
+    getForecastData
 }

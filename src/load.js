@@ -31,7 +31,7 @@ const load = () => {
                     }
                     await dataAsync(cityTemp.city, tempType);
                 }
-                console.log(window.clientInformation);
+                // console.log(window.clientInformation);
             } catch (e) {
                 console.log(e);
             }

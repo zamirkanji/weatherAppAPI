@@ -17,7 +17,7 @@ const checkTempType = () => {
     let tt = getLocalStorage();
     tt = JSON.parse(tt);
     tt = tt.FC;
-    console.log(tt);
+    // console.log(tt);
     return tt;
 }
 
@@ -51,6 +51,7 @@ const displayRainAmount = (a, tt) => {
 const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmount) => {
     // let d = getTimeAndDate();
     // console.log(temp, rainAmount);
+    // console.log(qSelect);
     let dataTrue; 
     if (!snowAmount === undefined) {
         dataTrue = true;
@@ -62,8 +63,8 @@ const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmoun
     } else {
         dataTrue = false;
     }
-    console.log(description);
-    console.log(snowAmount);
+    // console.log(description);
+    // console.log(snowAmount);
     const imgIcon = document.querySelector(`${qSelect}`);
     const amountContainer = document.querySelector('#amount-container'); 
     let tt = checkTempType();
@@ -97,7 +98,7 @@ const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmoun
     }
     if (weather === 'Rain') {
         let a = displayRainAmount(rainAmount, tt);
-        console.log(rainAmount);
+        // console.log(rainAmount);
         a = Math.round(a * 100) / 100;
         amountContainer.textContent = `It has rained ${a} in the last Hour`;
 
