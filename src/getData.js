@@ -16,6 +16,7 @@ const getAllData = async (city, unitType) => {
             fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7706c3d5881905dc71d41abe6fc11974&units=${unitType}`, {mode: 'cors'}),
             // fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=7706c3d5881905dc71d41abe6fc11974&units=${unitType}`, {mode: 'cors'})
             fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=7706c3d5881905dc71d41abe6fc11974&units=${unitType}`, {mode: 'cors'})
+            // fetch('https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=7706c3d5881905dc71d41abe6fc11974')
         ]);
         DATA = [await response.json(), await forecast.json()];
         // console.log(DATA[0]);

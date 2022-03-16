@@ -10,21 +10,42 @@ class Element {
 const displayForecast = (daily) => {
     const forecastDay = document.querySelectorAll('.forecastDay');
     let tempArray = getForecastData(daily);
-    console.log(tempArray);
-    tempArray.forEach((temp, index) => {
-        console.log(temp);
-        // console.log(index);
-        forecastDay.forEach(el => {
-            el.textContent = `${temp.maxTemp}/${temp.minTemp}`;
-            // console.log(el);
-            let p = el.id;
-            // const item = document.querySelector(`#${p}`);
-            // console.log(item);
-            checkWeather(null, temp.weatherDescription[0], temp.weatherDescription[1],  `#${p}`, null, null);
-            return;
-        })
-        return;
-    })
+    // console.log(tempArray);
+
+    // for (let i = 0; i < tempArray.length; i++) {
+    //     console.log(tempArray[i].maxTemp);
+    //     console.log(tempArray.map(i => i.maxTemp));
+    //     for (const max of tempArray) {
+    //         // console.log(max.)
+    //         console.log(max.maxTemp);
+    //     }
+    //     for (let j = 0; j < forecastDay.length; j++) {
+    //         // console.log(forecastDay[j], forecastDay[j].textContent);
+    //         forecastDay[j].textContent = tempArray[i].maxTemp;
+    //     }
+    // }
+
+    for (const el of forecastDay) {
+        console.log(el);
+        for (const max of tempArray) {
+            el.textContent = max.maxTemp;
+        }
+    }
+
+    // tempArray.forEach((temp, index) => {
+    //     console.log(temp);
+    //     // console.log(index);
+    //     forecastDay.forEach(el => {
+    //         el.textContent = `${temp.maxTemp}/${temp.minTemp}`;
+    //         // console.log(el);
+    //         let p = el.id;
+    //         // const item = document.querySelector(`#${p}`);
+    //         // console.log(item);
+    //         checkWeather(null, temp.weatherDescription[0], temp.weatherDescription[1],  `#${p}`, null, null);
+    //         return;
+    //     })
+    //     return;
+    // })
 }
 
 const changeHeaderOnScroll = () => {
