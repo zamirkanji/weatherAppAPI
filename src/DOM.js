@@ -10,7 +10,7 @@ class Element {
 const displayForecast = (daily) => {
     const forecastDay = document.querySelectorAll('.forecastDay');
     let tempArray = getForecastData(daily);
-    // console.log(tempArray);
+    console.log(tempArray);
 
     // for (let i = 0; i < tempArray.length; i++) {
     //     console.log(tempArray[i].maxTemp);
@@ -28,8 +28,11 @@ const displayForecast = (daily) => {
     for (const el of forecastDay) {
         console.log(el);
         for (const max of tempArray) {
-            el.textContent = max.maxTemp;
+            el.textContent = `${max.maxTemp}/${max.minTemp}`;
+            // return el.textContent = max.maxTemp;
+            return;
         }
+        return;
     }
 
     // tempArray.forEach((temp, index) => {
