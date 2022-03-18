@@ -51,7 +51,7 @@ const displayRainAmount = (a, tt) => {
 const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmount) => {
     // let d = getTimeAndDate();
     // console.log(temp, rainAmount);
-    // console.log(qSelect);
+    console.log(qSelect);
     let dataTrue; 
     if (!snowAmount === undefined) {
         dataTrue = true;
