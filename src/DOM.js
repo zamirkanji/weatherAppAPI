@@ -13,15 +13,10 @@ const displayForecast = (daily) => {
     console.log(tempArray);
 
     forecastDay.forEach((el, index) => {
-        // console.log(el.id);
-        // console.log(el);
-        // console.log(el.firstChild);
-        // console.dir(el);
         console.log(el.firstChild.id);
-        // console.log(index);
         tempArray.forEach((temp, index2) => {
             if (index === index2) {
-                console.log(temp.weatherDescription[0], temp.weatherDescription[1]);
+                // console.log(temp.weatherDescription[0], temp.weatherDescription[1]);
                 checkWeather(undefined, temp.weatherDescription[0], temp.weatherDescription[1], `#${el.firstChild.id}`, undefined, undefined);
                 // el.textContent = `${temp.maxTemp}/${temp.minTemp}`;
             }
@@ -71,11 +66,7 @@ const hideLoading = () => {
     if (main.classList.contains('display')) {
         main.classList.remove('display');
     }
-    // if (main.classList.contains('visibility')) {
-    //     main.classList.remove('visibility');
-    // }
     loader.classList.remove('ripple');
-    // loader.classList.remove('lds-default');
     loader.classList.add('display');
     header.classList.remove('display');
     cityContainer.classList.remove('display');
