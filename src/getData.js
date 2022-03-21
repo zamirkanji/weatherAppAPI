@@ -19,8 +19,8 @@ const getAllData = async (city, unitType) => {
             // fetch('https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=7706c3d5881905dc71d41abe6fc11974')
         ]);
         DATA = [await response.json(), await forecast.json()];
-        // console.log(DATA[0]);
-        // console.log(DATA[1]);
+        console.log(DATA[0]);
+        console.log(DATA[1]);
         const {clouds, weather, main, wind, name, visibility, sys, rain, snow} = DATA[0];
         const {daily, timezone, timezone_offset} = DATA[1];
         return {weather, main, wind, name, visibility, sys, timezone, timezone_offset, state, daily, clouds, rain, snow};
@@ -29,12 +29,16 @@ const getAllData = async (city, unitType) => {
         if (weatherDescrip.querySelector('#cityInvalid') != null) {
             return;
         }
-        const p = document.createElement('p');
+        cityInvalidText();
+    }
+}
+
+function cityInvalidText () {
+    const p = document.createElement('p');
         p.classList.add('text');
         p.id = 'cityInvalid';
         p.textContent = 'Please enter a valid city';
         weatherDescrip.appendChild(p);
-    }
 }
 
 export {

@@ -86,6 +86,7 @@ const dataAsync = async (v, tempType) => {
     try {
         c = await getAllData(v, tempType);
         const {name, weather, state, main, wind, visibility, sys, daily, rain, snow, } = c;
+        console.log(rain, snow);
         console.log(c);
         const t = timeOut(displayLoading());
         // let d = new Weather(weather, name, wind, main, visibility, sys, daily, sys.sunrise, sys.sunset);
@@ -98,9 +99,19 @@ const dataAsync = async (v, tempType) => {
         getWeatherType(weather[0].main, weather[0].description);
         getVisibility(visibility, 'miles');
         getPressure(main.pressure);
-        // console.log(rain['1h']);
+        console.log(rain['1h'], rain, snow);
         displayForecast(daily);
-        checkWeather(main.temp, weather[0].main, weather[0].description, '#imgIcon', c.snow??['1h'], c.rain??['1h']);
+        if (rain === undefined && snow === undefined) {
+            checkWeather(main.temp, weather[0].main, weather[0].description, '#imgIcon', undefined, undefined);
+        }
+        if (!rain === undefined) {
+            console.log(rain['1h']);
+            checkWeather(main.temp, weather[0].main, weather[0].description, '#imgIcon', undefined, rain['1h']);    
+        }
+        if (!snow === undefined) {
+            checkWeather(main.temp, weather[0].main, weather[0].description, '#imgIcon', snow['1h'], undefined);    
+        }
+        // checkWeather(main.temp, weather[0].main, weather[0].description, '#imgIcon', snow['1h'], rain['1h']);
         getCloudCover(c.clouds.all + '%');
         dateForForecast(sys.sunrise, sys.sunset);
         riseSet(sys.sunrise, sys.sunset, c.timezone, c.timezone_offset);

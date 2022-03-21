@@ -49,31 +49,29 @@ const displayRainAmount = (a, tt) => {
 }
 
 const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmount) => {
-    // let d = getTimeAndDate();
-    // console.log(temp, rainAmount);
-    console.log(qSelect);
-    let dataTrue; 
-    if (!snowAmount === undefined) {
-        dataTrue = true;
-    } else {
-        dataTrue = false;
-    }
-    if (!rainAmount === undefined) {
-        dataTrue = true;
-    } else {
-        dataTrue = false;
-    }
+    // console.log(rainAmount);
+    // let dataTrue; 
+    // if (!snowAmount === undefined) {
+    //     dataTrue = true;
+    // } else {
+    //     dataTrue = false;
+    // }
+    // if (!rainAmount === undefined) {
+    //     dataTrue = true;
+    // } else {
+    //     dataTrue = false;
+    // }
     // console.log(description);
     // console.log(snowAmount);
     const imgIcon = document.querySelector(`${qSelect}`);
     const amountContainer = document.querySelector('#amount-container'); 
     let tt = checkTempType();
     if (weather === 'Snow') {
-        if (dataTrue) {
-            let a = displaySnowAmount(snowAmount, tt);
-            // a = Math.round(a * 100) / 100;
-            amountContainer.textContent = `It has snowed ${a} in the last Hour`;
-        }
+        // if (dataTrue) {
+        //     let a = displaySnowAmount(snowAmount, tt);
+        //     // a = Math.round(a * 100) / 100;
+        //     amountContainer.textContent = `It has snowed ${a} in the last Hour`;
+        // }
 
         if (description === 'heavy snow') {
             imgIcon.src = heavySnow;
@@ -81,6 +79,7 @@ const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmoun
         if (description === 'snow') {
             imgIcon.src = heavySnow;
         }
+        imgIcon.alt = weather;
     }
     if (weather === 'Clouds') {
         if (description === 'few clouds') {
@@ -97,10 +96,12 @@ const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmoun
         }
     }
     if (weather === 'Rain') {
-        let a = displayRainAmount(rainAmount, tt);
-        // console.log(rainAmount);
-        a = Math.round(a * 100) / 100;
-        amountContainer.textContent = `It has rained ${a} in the last Hour`;
+        // if (dataTrue) {
+        //     let a = displayRainAmount(rainAmount, tt);
+        //     // console.log(rainAmount);
+        //     a = Math.round(a * 100) / 100;
+        //     amountContainer.textContent = `It has rained ${a} in the last Hour`;
+        // }
 
         if (description === 'light rain') {
             imgIcon.src = rain;
@@ -111,7 +112,7 @@ const checkWeather = (temp, weather, description, qSelect, snowAmount, rainAmoun
         if (description === 'heavy intensity rain') {
             imgIcon.src = heavyRain;
         }
-
+        imgIcon.alt = weather;
     }
     if (weather === 'Clear') {
         if (description === 'clear sky') {
