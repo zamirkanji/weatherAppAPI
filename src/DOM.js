@@ -8,17 +8,15 @@ class Element {
 }
 
 const displayForecast = (daily) => {
-    const forecastDay = document.querySelectorAll('.forecastDay');
+    // const forecastDay = document.querySelectorAll('.forecastDay');
+    // const forecastDay = document.querySelectorAll('.img-svg');
+    const forecastDay = document.querySelectorAll('.icon-p-div');
     let tempArray = getForecastData(daily);
-    console.log(tempArray);
-
     forecastDay.forEach((el, index) => {
-        console.log(el.firstChild.id);
         tempArray.forEach((temp, index2) => {
             if (index === index2) {
-                // console.log(temp.weatherDescription[0], temp.weatherDescription[1]);
-                checkWeather(undefined, temp.weatherDescription[0], temp.weatherDescription[1], `#${el.firstChild.id}`, undefined, undefined);
-                // el.textContent = `${temp.maxTemp}/${temp.minTemp}`;
+                el.firstElementChild.nextElementSibling.textContent = `${Math.round(temp.maxTemp)}/${Math.round(temp.minTemp)}`;
+                checkWeather(undefined, temp.weatherDescription[0], temp.weatherDescription[1], `#${el.firstElementChild.id}`, undefined, undefined);
             }
         })
     })

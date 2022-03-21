@@ -226,8 +226,6 @@ const getVisibility = (v, m) => {
 }
 
 const getForecastData = (daily) => {
-    // const d = new Weather(c);
-    
     let dailyTemps = [];
     for (const obj of daily) {
         let maxTemp = obj.temp.max;

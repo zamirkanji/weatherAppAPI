@@ -297,7 +297,7 @@ img {
   flex: 1;
 }
 
-.info-box, .forecastDay {
+.info-box, .icon-p-div {
   background-color: rgba(72, 116, 145, 0.3);
   border-radius: 10px;
   padding: 20px;
